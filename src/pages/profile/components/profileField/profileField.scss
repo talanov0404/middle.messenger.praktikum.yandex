@@ -1,0 +1,21 @@
+.profile__field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 510px;
+
+  p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .name__field {
+    color: #1e1e1e;
+  }
+
+  .value__field {
+    color: #999999;
+  }
+}

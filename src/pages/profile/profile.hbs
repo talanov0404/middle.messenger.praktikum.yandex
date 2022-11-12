@@ -1,0 +1,35 @@
+<div class="profile">
+    <div class="back_chat">
+        {{> button id="toback" class="button_icon"}}
+    </div>
+    <div class="profile_main">
+        <header>
+            <div class="avatar"></div>
+            <label class="name">Иван</label>
+        </header>
+        {{> profileField name="Почта" value="example@ya.ru"}}
+        <hr>
+        {{> profileField name="Логин" value="ivanov"}}
+        <hr>
+        {{> profileField name="Имя" value="Иван"}}
+        <hr>
+        {{> profileField name="Фамилия" value="Иванов"}}
+        <hr>
+        {{> profileField name="Имя в чате" value="Иван"}}
+        <hr>
+        {{> profileField name="Телефон" value="+7 (999) 999-99-99"}}
+        <footer>
+            <div class="group_field">
+                <label class="change_button">Изменить данные</label>
+            </div>
+            <hr>
+            <div class="group_field">
+                <label class="change_button">Изменить пароль</label>
+            </div>
+            <hr>
+            <div class="group_field">
+                <label id="logout" class="change_button failed">Выйти</label>
+            </div>
+        </footer>
+    </div>
+</div>

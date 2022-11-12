@@ -1,0 +1,13 @@
+<div class="authorization">
+    <form>
+        <header>
+            <label>Вход</label>
+        </header>
+        {{> entryField type="text" name="login" label="Логин" placeholder="ivanov"}}
+        {{> entryField type="password" name="password" label="Пароль"}}
+        <footer>
+            {{> button id="authorization" label="Войти"}}
+            <label id="registration">Нет аккаунта?</label>
+        </footer>
+    </form>
+</div>

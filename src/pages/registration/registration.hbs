@@ -1,0 +1,18 @@
+<div class="registration">
+    <form>
+        <header>
+            <label>Регистрация</label>
+        </header>
+        {{> entryField type="email" name="email" label="Почта" placeholder="example@ya.ru"}}
+        {{> entryField type="text" name="login" label="Логин" placeholder="ivanov"}}
+        {{> entryField type="text" name="first_name" label="Имя" placeholder="Иван"}}
+        {{> entryField type="text" name="second_name" label="Фамилия" placeholder="Иванов"}}
+        {{> entryField type="text" name="phone" label="Телефон" placeholder="+7 (999) 999-99-99"}}
+        {{> entryField type="password" name="password" label="Пароль"}}
+        {{> entryField type="password" name="password" label="Пароль"}}
+        <footer>
+            {{> button id="registration" label="Зарегистрироваться"}}
+            <label id="authorization">Войти</label>
+        </footer>
+    </form>
+</div>

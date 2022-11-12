@@ -1,0 +1,44 @@
+.error-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label, p {
+      font-weight: 500;
+      text-align: center;
+      color: #1E1E1E;
+    }
+
+    .message_code {
+      margin-bottom: 40px;
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    .message_text {
+      margin: 0 0 70px 0;
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    .message_back {
+      font-size: 11px;
+      line-height: 11px;
+      color: #3369F3;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}

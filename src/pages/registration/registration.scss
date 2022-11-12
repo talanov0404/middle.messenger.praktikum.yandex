@@ -1,0 +1,64 @@
+.registration {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 30px;
+    width: 340px;
+    height: 615px;
+    background: #ffffff;
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+    border-radius: 12px;
+
+    header {
+      display: flex;
+      justify-content: center;
+      width: auto;
+      height: 20px;
+      margin: 20px 0 40px 0;
+
+      label {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: #1e1e1e;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: auto;
+      height: max-content;
+      margin-top: auto;
+
+      label {
+        padding-top: 14px;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 11px;
+        color: #3369f3;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+
+      button {
+        width: 280px;
+        min-height: 37px;
+      }
+    }
+  }
+}
