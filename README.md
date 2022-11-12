@@ -2,7 +2,8 @@
 Ссылка на макеты figma - <https://www.figma.com/file/z6fige0zboLKNT3bR1gdsq/chat-yandex>
 
 <h2 align="center">Пример использование</h2>
-<https://messenger-yandex-middle.netlify.app/>
+
+Пример - <https://messenger-yandex-middle.netlify.app/>
 
 <h2 align="center">Использование</h2>
 
