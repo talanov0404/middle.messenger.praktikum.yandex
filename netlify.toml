@@ -7,4 +7,3 @@
 
 [build]
   command = "npm run start"
-  publish = "dist"
