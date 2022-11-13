@@ -1,11 +1,13 @@
-.profile {
+@import '../../../src/colors';
+
+.profile-page {
   display: flex;
   flex-direction: row;
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: $white-color;
 
-  .back_chat{
+  .profile-page__back {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,9 +15,9 @@
     width: 64px;
     height: 100%;
     padding: 0 10px;
-    border-right: 1px solid #eaeaea;
+    border-right: 1px solid $border-color;
 
-    button {
+    .button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -27,7 +29,7 @@
     }
   }
 
-  .profile_main {
+  .profile-page__main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +37,7 @@
     width: 100%;
     height: 100%;
 
-    header {
+    .profile-page__header {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -49,7 +51,7 @@
         justify-content: center;
         width: 128px;
         height: 128px;
-        background: #efefef;
+        background: $bg-input-color;
         border-radius: 64px;
         margin-bottom: 20px;
       }
@@ -58,29 +60,29 @@
         font-weight: 600;
         font-size: 16px;
         line-height: 16px;
-        color: #1e1e1e;
+        color: $font-color;
       }
     }
 
-    hr {
+    .separator {
       border: none;
       height: 1px;
       width: 510px;
-      background: #eaeaea;
+      background: $border-color;
     }
 
-    footer {
+    .profile-page__footer {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin-top: 60px;
 
-      .change_button {
+      .label {
         font-weight: 500;
         font-size: 13px;
         line-height: 13px;
-        color: #3369f3;
+        color: $accent-color;
 
         &:hover {
           cursor: pointer;
@@ -88,8 +90,8 @@
         }
       }
 
-      .failed {
-        color: #ff0000;
+      .label-failed {
+        color: $danger-color;
       }
     }
   }

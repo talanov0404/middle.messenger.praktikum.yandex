@@ -1,13 +1,19 @@
+@import './colors';
+
 body {
   font-family: 'Inter';
   font-style: normal;
 
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
+  background-color: $white-color;
 
   input {
     border: none;
     outline: none;
+  }
+
+  p {
+    margin: 0;
   }
 }

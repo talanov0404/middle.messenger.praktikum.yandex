@@ -1,39 +1,42 @@
-.error-page {
+@import '../../../src/colors';
+
+.not-found-page {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: $white-color;
 
-  .message {
+  .not-found-page__message {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    label, p {
-      font-weight: 500;
-      text-align: center;
-      color: #1E1E1E;
-    }
-
-    .message_code {
+    .not-found-page__message-code {
       margin-bottom: 40px;
       font-size: 40px;
       line-height: 40px;
     }
 
-    .message_text {
+    .not-found-page__message-text {
       margin: 0 0 70px 0;
       font-size: 20px;
       line-height: 20px;
     }
 
-    .message_back {
+    .not-found-page__message-code,
+    .not-found-page__message-text {
+      font-weight: 500;
+      text-align: center;
+      color: $font-color;
+    }
+
+    .not-found-page__back {
       font-size: 11px;
       line-height: 11px;
-      color: #3369F3;
+      color: $accent-color;
 
       &:hover {
         cursor: pointer;

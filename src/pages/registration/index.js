@@ -1,7 +1,7 @@
-import template from './registration.hbs'
-import './registration.scss'
-import { createPage } from "../../index";
-import { createAuthorizationPage } from "../authorization";
+import template from './registration.hbs';
+import './registration.scss';
+import { createPage } from '../../index';
+import { createAuthorizationPage } from '../authorization';
 
 export const createRegistrationPage = () => {
   createPage(template());
@@ -15,4 +15,4 @@ export const createRegistrationPage = () => {
   authorizationButton.addEventListener('click', function (e) {
     createAuthorizationPage();
   });
-}
+};

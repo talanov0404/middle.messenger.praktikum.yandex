@@ -1,13 +1,13 @@
 <div class="authorization">
-    <form>
-        <header>
-            <label>Вход</label>
+    <form class="authorization__form">
+        <header class="authorization__header">
+            <label class="label">Вход</label>
         </header>
         {{> entryField type="text" name="login" label="Логин" placeholder="ivanov"}}
         {{> entryField type="password" name="password" label="Пароль"}}
-        <footer>
+        <footer class="authorization__footer">
             {{> button id="authorization" label="Войти"}}
-            <label id="registration">Нет аккаунта?</label>
+            <label id="registration" class="label">Нет аккаунта?</label>
         </footer>
     </form>
 </div>

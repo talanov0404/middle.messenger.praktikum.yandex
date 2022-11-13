@@ -1,9 +1,9 @@
-import template from './profile.hbs'
-import './profile.scss'
-import './components'
-import { createPage } from "../../index";
-import { createChatPage } from "../chats";
-import { createAuthorizationPage } from "../authorization";
+import template from './profile.hbs';
+import './profile.scss';
+import './components';
+import { createPage } from '../../index';
+import { createChatPage } from '../chats';
+import { createAuthorizationPage } from '../authorization';
 
 export const createProfilePage = () => {
   createPage(template());
@@ -17,4 +17,4 @@ export const createProfilePage = () => {
   logoutButton.addEventListener('click', () => {
     createAuthorizationPage();
   });
-}
+};
