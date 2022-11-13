@@ -1,7 +1,7 @@
 <div class="registration">
-    <form>
-        <header>
-            <label>Регистрация</label>
+    <form class="registration__form">
+        <header class="registration__header">
+            <label class="label">Регистрация</label>
         </header>
         {{> entryField type="email" name="email" label="Почта" placeholder="example@ya.ru"}}
         {{> entryField type="text" name="login" label="Логин" placeholder="ivanov"}}
@@ -10,9 +10,9 @@
         {{> entryField type="text" name="phone" label="Телефон" placeholder="+7 (999) 999-99-99"}}
         {{> entryField type="password" name="password" label="Пароль"}}
         {{> entryField type="password" name="password" label="Пароль"}}
-        <footer>
+        <footer class="registration__footer">
             {{> button id="registration" label="Зарегистрироваться"}}
-            <label id="authorization">Войти</label>
+            <label id="authorization" class="label">Войти</label>
         </footer>
     </form>
 </div>

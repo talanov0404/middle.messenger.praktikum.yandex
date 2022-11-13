@@ -1,4 +1,6 @@
-.profile__field {
+@import '../../../../../src/colors';
+
+.profile-field {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -11,11 +13,11 @@
     line-height: 13px;
   }
 
-  .name__field {
-    color: #1e1e1e;
+  .profile-field__name {
+    color: $font-color;
   }
 
-  .value__field {
-    color: #999999;
+  .profile-field__value {
+    color: $font-placeholder-color;
   }
 }

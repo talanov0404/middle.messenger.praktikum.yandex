@@ -1,8 +1,8 @@
-import template from './authorization.hbs'
-import './authorization.scss'
-import { createPage } from "../../index";
-import { createRegistrationPage } from "../registration";
-import { createChatPage } from "../chats";
+import template from './authorization.hbs';
+import './authorization.scss';
+import { createPage } from '../../index';
+import { createRegistrationPage } from '../registration';
+import { createChatPage } from '../chats';
 
 export const createAuthorizationPage = () => {
   createPage(template());
@@ -17,4 +17,4 @@ export const createAuthorizationPage = () => {
     createChatPage();
     return false;
   });
-}
+};

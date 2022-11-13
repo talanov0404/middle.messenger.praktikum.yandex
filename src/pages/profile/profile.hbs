@@ -1,34 +1,34 @@
-<div class="profile">
-    <div class="back_chat">
-        {{> button id="toback" class="button_icon"}}
+<div class="profile-page">
+    <div class="profile-page__back">
+        {{> button id="toback"}}
     </div>
-    <div class="profile_main">
-        <header>
+    <div class="profile-page__main">
+        <header class="profile-page__header">
             <div class="avatar"></div>
             <label class="name">Иван</label>
         </header>
         {{> profileField name="Почта" value="example@ya.ru"}}
-        <hr>
+        <hr class="separator">
         {{> profileField name="Логин" value="ivanov"}}
-        <hr>
+        <hr class="separator">
         {{> profileField name="Имя" value="Иван"}}
-        <hr>
+        <hr class="separator">
         {{> profileField name="Фамилия" value="Иванов"}}
-        <hr>
+        <hr class="separator">
         {{> profileField name="Имя в чате" value="Иван"}}
-        <hr>
+        <hr class="separator">
         {{> profileField name="Телефон" value="+7 (999) 999-99-99"}}
-        <footer>
-            <div class="group_field">
-                <label class="change_button">Изменить данные</label>
+        <footer class="profile-page__footer">
+            <div class="profile-page__group">
+                <label class="label">Изменить данные</label>
             </div>
-            <hr>
-            <div class="group_field">
-                <label class="change_button">Изменить пароль</label>
+            <hr class="separator">
+            <div class="profile-page__group">
+                <label class="label">Изменить пароль</label>
             </div>
-            <hr>
-            <div class="group_field">
-                <label id="logout" class="change_button failed">Выйти</label>
+            <hr class="separator">
+            <div class="profile-page__group">
+                <label id="logout" class="label label-failed">Выйти</label>
             </div>
         </footer>
     </div>

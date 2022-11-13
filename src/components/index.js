@@ -1,2 +1,2 @@
-import './entryField'
-import './button'
+import './entryField';
+import './button';

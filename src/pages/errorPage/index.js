@@ -1,7 +1,7 @@
-import template from './errorPage.hbs'
-import './errorPage.scss'
-import { createPage } from "../../index";
-import { createAuthorizationPage } from "../authorization";
+import template from './errorPage.hbs';
+import './errorPage.scss';
+import { createPage } from '../../index';
+import { createAuthorizationPage } from '../authorization';
 
 export const createErrorPage = () => {
   createPage(template());
@@ -10,4 +10,4 @@ export const createErrorPage = () => {
   toBackButton.addEventListener('click', () => {
     createAuthorizationPage();
   });
-}
+};

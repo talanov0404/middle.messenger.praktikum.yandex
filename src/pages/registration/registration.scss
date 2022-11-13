@@ -1,3 +1,5 @@
+@import '../../../src/colors';
+
 .registration {
   display: flex;
   flex-direction: row;
@@ -5,36 +7,36 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: $white-color;
 
-  form {
+  .registration__form {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 30px;
     width: 340px;
     height: 615px;
-    background: #ffffff;
-    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+    background-color: $white-color;
+    box-shadow: 0 0 6px $shadow-color;
     border-radius: 12px;
 
-    header {
+    .registration__header {
       display: flex;
       justify-content: center;
       width: auto;
       height: 20px;
       margin: 20px 0 40px 0;
 
-      label {
+      .label {
         font-weight: 500;
         font-size: 20px;
         line-height: 20px;
         text-align: center;
-        color: #1e1e1e;
+        color: $font-color;
       }
     }
 
-    footer {
+    .registration__footer {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -42,12 +44,12 @@
       height: max-content;
       margin-top: auto;
 
-      label {
+      .label {
         padding-top: 14px;
         font-weight: 500;
         font-size: 11px;
         line-height: 11px;
-        color: #3369f3;
+        color: $accent-color;
 
         &:hover {
           cursor: pointer;
@@ -55,7 +57,7 @@
         }
       }
 
-      button {
+      .button {
         width: 280px;
         min-height: 37px;
       }
