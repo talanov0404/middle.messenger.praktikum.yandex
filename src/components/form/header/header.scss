@@ -1,0 +1,15 @@
+&__header {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: 20px;
+  padding: 20px 0 40px;
+
+  .label {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: $font-color;
+  }
+}

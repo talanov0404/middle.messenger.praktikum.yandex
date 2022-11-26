@@ -1,0 +1,14 @@
+@import "../../../src/colors";
+
+.link {
+  padding-top: 14px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 11px;
+  color: $accent-color;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

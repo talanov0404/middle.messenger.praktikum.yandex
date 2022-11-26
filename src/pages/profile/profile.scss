@@ -1,4 +1,4 @@
-@import '../../../src/colors';
+@import "../../../src/colors";
 
 .profile-page {
   display: flex;
@@ -7,7 +7,7 @@
   width: 100%;
   background-color: $white-color;
 
-  .profile-page__back {
+  &__back {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -29,7 +29,7 @@
     }
   }
 
-  .profile-page__main {
+  &__main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,62 +37,38 @@
     width: 100%;
     height: 100%;
 
-    .profile-page__header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 60px;
-
-      .avatar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        width: 128px;
-        height: 128px;
-        background: $bg-input-color;
-        border-radius: 64px;
-        margin-bottom: 20px;
-      }
-
-      .name {
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 16px;
-        color: $font-color;
-      }
-    }
-
     .separator {
       border: none;
       height: 1px;
       width: 510px;
       background: $border-color;
     }
+  }
 
-    .profile-page__footer {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+
+    .avatar {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      margin-top: 60px;
+      width: 128px;
+      height: 128px;
+      background: $bg-input-color;
+      border-radius: 64px;
+      margin-bottom: 20px;
+    }
 
-      .label {
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 13px;
-        color: $accent-color;
-
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-        }
-      }
-
-      .label-failed {
-        color: $danger-color;
-      }
+    .name {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 16px;
+      color: $font-color;
     }
   }
 }
