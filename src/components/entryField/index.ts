@@ -6,6 +6,7 @@ import Input from '../input';
 type TEntryFieldProps = {
   label: string,
   input: Input,
+  focus?: boolean,
   error?: string,
 };
 

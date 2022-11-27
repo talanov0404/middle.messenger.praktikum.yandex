@@ -104,14 +104,14 @@ export default class RegistrationPage extends Block<TRegistrationPageProps> {
     });
 
     const firstName = new EntryField({
-      label: 'Почта',
-      error: 'Неверный имя',
+      label: 'Имя',
+      error: 'Неверное имя',
       input: inputFirstName,
     });
 
     const inputSecondName = new Input({
       type: 'text',
-      name: 'first_name',
+      name: 'second_name',
       events: {
         input: () => {
           this.secondName = inputSecondName.value;
@@ -128,7 +128,7 @@ export default class RegistrationPage extends Block<TRegistrationPageProps> {
 
     const secondName = new EntryField({
       label: 'Фамилия',
-      error: 'Неверный фамилия',
+      error: 'Неверная фамилия',
       input: inputSecondName,
     });
 
@@ -183,7 +183,7 @@ export default class RegistrationPage extends Block<TRegistrationPageProps> {
       name: 'password',
       events: {
         input: () => {
-          this.passwordOne = inputPasswordTwo.value;
+          this.passwordTwo = inputPasswordTwo.value;
         },
         focus: () => {
           passwordTwo.addClass('focus');
@@ -245,6 +245,7 @@ export default class RegistrationPage extends Block<TRegistrationPageProps> {
             phone: this.phone,
             password: this.passwordOne,
           });
+          createPage(PagesName.Authorization);
         },
       },
     });

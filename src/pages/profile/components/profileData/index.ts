@@ -14,7 +14,6 @@ type TProfileDataProps = {
 
 export default class ProfileData extends Block<TProfileDataProps> {
   protected init() {
-    console.log(this.props);
     this.children.email = new ProfileField({
       name: 'Почта',
       value: this.props.email,
@@ -47,6 +46,12 @@ export default class ProfileData extends Block<TProfileDataProps> {
   }
 
   render() {
+    this.children.email.setProps({ ...this.children.email, value: this.props.email });
+    this.children.login.setProps({ ...this.children.email, value: this.props.login });
+    this.children.firstName.setProps({ ...this.children.email, value: this.props.firstName });
+    this.children.secondName.setProps({ ...this.children.email, value: this.props.secondName });
+    this.children.displayName.setProps({ ...this.children.email, value: this.props.displayName });
+    this.children.phone.setProps({ ...this.children.email, value: this.props.phone });
     return this.compile(template, { ...this.props });
   }
 }

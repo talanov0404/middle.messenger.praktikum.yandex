@@ -92,7 +92,7 @@ export default class AuthorizationPage extends Block<TAuthorizationPageProps> {
             result = true;
           }
           if (!regexpTest(RegexpName.Password, this.password)) {
-            password.removeClass('error');
+            password.addClass('error');
             result = true;
           }
           if (result) return;

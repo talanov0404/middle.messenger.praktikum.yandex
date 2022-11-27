@@ -1,0 +1,27 @@
+@import "../../../../../src/colors";
+
+.form-edit-data {
+  display: flex;
+  flex-direction: column;
+  width: 510px;
+
+  .entry-field {
+    width: 100%;
+
+    .input {
+      text-align: right;
+      border-color: $border-color;
+    }
+
+    &.focus {
+      .input {
+        text-align: left;
+      }
+    }
+  }
+
+  .button {
+    margin-top: 32px;
+    min-height: 37px;
+  }
+}

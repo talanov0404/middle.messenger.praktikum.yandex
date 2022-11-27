@@ -5,8 +5,12 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 280px;
-  padding: 16px 0 32px 0;
+  padding: 16px 0;
   position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__label {
     display: flex;
@@ -21,7 +25,7 @@
     color: $font-placeholder-color;
   }
 
-  &__error {
+  .text-error {
     display: none;
     padding-top: 14px;
     font-weight: 400;
@@ -31,29 +35,24 @@
   }
 
   &.error {
-    padding-bottom: 10px;
+    padding-bottom: 0;
 
-    .entry-field__error {
+    .text-error {
       display: flex;
+      padding-top: 8px;
     }
   }
 
   &.focus {
-    padding-top: 7px;
+    padding-top: 3px;
+  }
 
-    .entry-field__label {
+  &.focus & {
+    &__label {
       position: relative;
-      height: 9px;
+      height: 13px;
       font-size: 9px;
       line-height: 9px;
     }
-
-    .entry-field__input {
-      background-color: $white-color;
-    }
-  }
-
-  &:last-child {
-    margin-bottom: 0;
   }
 }

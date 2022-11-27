@@ -1,4 +1,6 @@
 @import "../../../src/colors";
+@import "../../components/form/header/header";
+@import "../../components/form/footer/footer";
 
 .registration {
   display: flex;
@@ -21,7 +23,7 @@
   }
 
   .form {
-    @import "../../components/form/header/header";
-    @import "../../components/form/footer/footer";
+    @include header;
+    @include footer;
   }
 }

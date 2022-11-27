@@ -3,15 +3,14 @@
         {{{buttonBack}}}
     </div>
     <div class="profile-page__main">
-        <header class="profile-page__header">
-            <div class="avatar"></div>
-            <label class="name">Иван</label>
-        </header>
-        {{#if edit}}
-            {{{editForm}}}
+        {{{header}}}
+        {{#if editData}}
+            {{{editFormData}}}
+        {{else if editPassword}}
+            {{{editFormPassword}}}
         {{else}}
             {{{profileData}}}
+            {{{footer}}}
         {{/if}}
-        {{{footer}}}
     </div>
 </div>

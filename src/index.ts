@@ -15,5 +15,5 @@ const createPage = (name: TPages) => {
 export default createPage;
 
 document.addEventListener('DOMContentLoaded', () => {
-  createPage(PagesName.Profile);
+  createPage(PagesName.Authorization);
 });

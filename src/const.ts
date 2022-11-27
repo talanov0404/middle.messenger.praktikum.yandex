@@ -17,3 +17,10 @@ export enum RegexpName {
   Message = 'message',
   Phone = 'phone',
 }
+
+export enum Methods {
+  Get = 'Get',
+  Put = 'Put',
+  Post = 'Post',
+  Delete = 'Delete',
+}
