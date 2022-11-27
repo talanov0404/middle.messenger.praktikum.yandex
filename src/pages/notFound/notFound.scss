@@ -1,4 +1,4 @@
-@import '../../../src/colors';
+@import "../../../src/colors";
 
 .not-found-page {
   display: flex;
@@ -9,31 +9,31 @@
   width: 100%;
   background-color: $white-color;
 
-  .not-found-page__message {
+  &__message {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .not-found-page__message-code {
+    &__message-code {
       margin-bottom: 40px;
       font-size: 40px;
       line-height: 40px;
     }
 
-    .not-found-page__message-text {
-      margin: 0 0 70px 0;
+    &__message-text {
+      margin: 0 0 70px;
       font-size: 20px;
       line-height: 20px;
     }
 
-    .not-found-page__message-code,
-    .not-found-page__message-text {
+    &__message-code,
+    &__message-text {
       font-weight: 500;
       text-align: center;
       color: $font-color;
     }
 
-    .not-found-page__back {
+    &__back {
       font-size: 11px;
       line-height: 11px;
       color: $accent-color;

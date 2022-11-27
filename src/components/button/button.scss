@@ -1,4 +1,4 @@
-@import '../../../src/colors';
+@import "../../../src/colors";
 
 .button {
   box-shadow: none;
@@ -13,5 +13,10 @@
 
   &:hover {
     cursor: pointer;
+  }
+
+  .icon {
+    width: 100%;
+    color: $white-color;
   }
 }

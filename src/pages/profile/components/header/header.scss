@@ -1,0 +1,28 @@
+@import "../../../../../src/colors";
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+
+  .avatar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 128px;
+    background: $bg-input-color;
+    border-radius: 64px;
+    margin-bottom: 20px;
+  }
+
+  .name {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: $font-color;
+  }
+}

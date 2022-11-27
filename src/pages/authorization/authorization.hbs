@@ -1,13 +1,7 @@
 <div class="authorization">
     <form class="authorization__form">
-        <header class="authorization__header">
-            <label class="label">Вход</label>
-        </header>
-        {{> entryField type="text" name="login" label="Логин" placeholder="ivanov"}}
-        {{> entryField type="password" name="password" label="Пароль"}}
-        <footer class="authorization__footer">
-            {{> button id="authorization" label="Войти"}}
-            <label id="registration" class="label">Нет аккаунта?</label>
-        </footer>
+        {{{header}}}
+        {{{content}}}
+        {{{footer}}}
     </form>
 </div>

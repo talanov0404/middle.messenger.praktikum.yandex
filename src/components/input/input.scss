@@ -1,0 +1,14 @@
+@import "../../../src/colors";
+
+.input {
+  box-sizing: border-box;
+  height: 28px;
+  width: 100%;
+  border: none;
+  padding: 7px 0;
+  border-bottom: 1px solid $accent-color;
+  outline: none;
+  line-height: 20px;
+  z-index: 1;
+  background-color: transparent;
+}

@@ -1,0 +1,31 @@
+@import "../../../../../../colors";
+
+.profile-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 32px;
+  width: 510px;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border: none;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__name {
+    color: $font-color;
+  }
+
+  &__value {
+    color: $font-placeholder-color;
+  }
+}

@@ -1,1 +1,7 @@
-<button id="{{id}}" class="button {{class}}">{{label}}</button>
+<button class="button">
+    {{#if src}}
+        <img src="{{src}}" class="icon"/>
+    {{else}}
+        {{label}}
+    {{/if}}
+</button>

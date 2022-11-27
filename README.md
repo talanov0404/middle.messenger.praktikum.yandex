@@ -25,6 +25,16 @@ npm install
 npm run dev
 ```
 
+Запуск проверки правил ESLint:
+```bash
+npm run eslint
+```
+
+Запуск проверки правил StyleLint:
+```bash
+npm run stylelint
+```
+
 сборка стабильной версии:
 ```bash
 npm run build
