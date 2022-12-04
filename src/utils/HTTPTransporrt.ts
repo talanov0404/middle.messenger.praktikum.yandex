@@ -1,5 +1,8 @@
 import { Methods } from '../const';
 
+type Options = Record<string, any>;
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
+
 function queryStringify(data: Record<string, any>) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
@@ -10,7 +13,7 @@ function queryStringify(data: Record<string, any>) {
 }
 
 export default class HTTPTransport {
-  GET = (url: string, options: Record<string, any> = {}) => {
+  GET: HTTPMethod = (url, options = {}) => {
     let newUrl = url;
     if (options.data) {
       newUrl = url + queryStringify(options.data);
@@ -18,17 +21,17 @@ export default class HTTPTransport {
     return this.request(newUrl, { ...options, method: Methods.Get }, options.timeout);
   };
 
-  PUT = (url: string, options: Record<string, any> = {}) => (
+  PUT: HTTPMethod = (url, options = {}) => (
     this.request(url, { ...options, method: Methods.Put }, options.timeout));
 
-  POST = (url: string, options: Record<string, any> = {}) => (
+  POST: HTTPMethod = (url, options = {}) => (
     this.request(url, { ...options, method: Methods.Post }, options.timeout));
 
-  DELETE = (url: string, options: Record<string, any> = {}) => (
+  DELETE: HTTPMethod = (url, options = {}) => (
     this.request(url, { ...options, method: Methods.Delete }, options.timeout));
 
-  request = (url: string, options: Record<string, any>, timeout = 5000) => {
-    const { headers = {}, method, data }: Record<string, any> = options;
+  request = (url: string, options: Options, timeout = 5000) => {
+    const { headers = {}, method, data }: Options = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
