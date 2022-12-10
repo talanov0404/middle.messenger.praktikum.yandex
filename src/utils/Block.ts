@@ -20,7 +20,7 @@ type TBlockEvents<P> = {
   [EVENTS.FLOW_RENDER]: [];
 };
 
-interface IBlock {
+export interface IBlock {
   [id: string]: unknown;
 }
 
@@ -211,5 +211,17 @@ export default class Block<P extends IBlock = any> {
     });
 
     return fragment.content;
+  }
+
+  public show() {
+    if (this.element) {
+      this.element.style.display = 'unset';
+    }
+  }
+
+  public hide() {
+    if (this.element) {
+      this.element.style.display = 'none';
+    }
   }
 }

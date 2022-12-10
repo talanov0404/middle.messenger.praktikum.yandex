@@ -9,7 +9,7 @@
   width: 100%;
   max-width: 510px;
 
-  .link {
+  .button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,6 +20,8 @@
     line-height: 13px;
     color: $accent-color;
     border-bottom: 1px solid $border-color;
+    border-radius: 0;
+    background-color: transparent;
     padding: 0;
 
     &:hover {
@@ -28,7 +30,7 @@
     }
   }
 
-  .link-failed {
+  .button-logout {
     color: $danger-color;
   }
 }

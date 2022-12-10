@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block, { IBlock } from '../../utils/Block';
 import template from './authorization.hbs';
 import './authorization.scss';
 import Button from '../../components/button';
@@ -8,20 +8,22 @@ import EntryField from '../../components/entryField';
 import Header from '../../components/form/header';
 import Content from './components/content';
 import Footer from '../../components/form/footer';
-import createPage from '../../index';
-import { PagesName } from '../const';
 import { RegexpName } from '../../const';
 import regexpTest from '../../utils/regexpTest';
+import AuthController from '../../controllers/AuthController';
+import Routes from '../const';
 
-type TAuthorizationPageProps = {
-  header: Header
+interface IAuthorizationPageProps extends IBlock {
+  header: Header,
   content: Content,
   footer: Footer
-};
+}
 
-export default class AuthorizationPage extends Block<TAuthorizationPageProps> {
-  private login: string = '';
-  private password: string = '';
+export default class AuthorizationPage extends Block<IAuthorizationPageProps> {
+  protected focusHandler(elem: EntryField) {
+    elem.addClass('focus');
+    elem.removeClass('error');
+  }
 
   protected blurHandler(elem: EntryField, regexp: RegexpName, value: string) {
     if (!value) {
@@ -39,15 +41,11 @@ export default class AuthorizationPage extends Block<TAuthorizationPageProps> {
       type: 'text',
       name: 'login',
       events: {
-        input: () => {
-          this.login = inputLogin.value;
-        },
         focus: () => {
-          login.addClass('focus');
-          login.removeClass('error');
+          this.focusHandler(login);
         },
         blur: () => {
-          this.blurHandler(login, RegexpName.Login, this.login);
+          this.blurHandler(login, RegexpName.Login, inputLogin.value);
         },
       },
     });
@@ -62,15 +60,11 @@ export default class AuthorizationPage extends Block<TAuthorizationPageProps> {
       type: 'password',
       name: 'password',
       events: {
-        input: () => {
-          this.password = inputPassword.value;
-        },
         focus: () => {
-          password.addClass('focus');
-          password.removeClass('error');
+          this.focusHandler(password);
         },
         blur: () => {
-          this.blurHandler(password, RegexpName.Password, this.password);
+          this.blurHandler(password, RegexpName.Password, inputPassword.value);
         },
       },
     });
@@ -87,34 +81,32 @@ export default class AuthorizationPage extends Block<TAuthorizationPageProps> {
         click: (event) => {
           event.preventDefault();
           let result = false;
-          if (!regexpTest(RegexpName.Login, this.login)) {
+          if (!regexpTest(RegexpName.Login, inputLogin.value)) {
             login.addClass('error');
             result = true;
           }
-          if (!regexpTest(RegexpName.Password, this.password)) {
+          if (!regexpTest(RegexpName.Password, inputPassword.value)) {
             password.addClass('error');
             result = true;
           }
           if (result) return;
-          console.log({
-            login: this.login,
-            password: this.password,
+
+          AuthController.signin({
+            login: inputLogin.value,
+            password: inputPassword.value,
           });
-          createPage(PagesName.Chats);
         },
       },
     });
 
     const link = new Link({
       text: 'Нет аккаунта?',
-      events: {
-        click: () => createPage(PagesName.Registrations),
-      },
+      route: Routes.Registrations,
     });
 
     this.children.header = new Header({ label: 'Вход' });
     this.children.content = new Content({ login, password });
-    this.children.footer = new Footer({ button, link });
+    this.children.footer = new Footer({ link, button });
   }
 
   render() {

@@ -1,11 +1,11 @@
-import Block from '../../../utils/Block';
+import Block, { IBlock } from '../../../utils/Block';
 import template from './header.hbs';
 
-type THeaderProps = {
+interface IHeaderProps extends IBlock {
   label: string
-};
+}
 
-export default class Header extends Block<THeaderProps> {
+export default class Header extends Block<IHeaderProps> {
   render() {
     return this.compile(template, { ...this.props });
   }

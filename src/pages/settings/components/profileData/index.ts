@@ -1,9 +1,9 @@
-import Block from '../../../../utils/Block';
+import Block, { IBlock } from '../../../../utils/Block';
 import template from './profileData.hbs';
 import './profileData.scss';
 import ProfileField from './components/profileField';
 
-type TProfileDataProps = {
+interface IProfileDataProps extends IBlock {
   email: string,
   login: string,
   firstName: string,
@@ -12,7 +12,7 @@ type TProfileDataProps = {
   phone: string,
 };
 
-export default class ProfileData extends Block<TProfileDataProps> {
+export default class ProfileData extends Block<IProfileDataProps> {
   protected init() {
     this.children.email = new ProfileField({
       name: 'Почта',
@@ -47,11 +47,11 @@ export default class ProfileData extends Block<TProfileDataProps> {
 
   render() {
     this.children.email.setProps({ ...this.children.email, value: this.props.email });
-    this.children.login.setProps({ ...this.children.email, value: this.props.login });
-    this.children.firstName.setProps({ ...this.children.email, value: this.props.firstName });
-    this.children.secondName.setProps({ ...this.children.email, value: this.props.secondName });
-    this.children.displayName.setProps({ ...this.children.email, value: this.props.displayName });
-    this.children.phone.setProps({ ...this.children.email, value: this.props.phone });
+    this.children.login.setProps({ ...this.children.login, value: this.props.login });
+    this.children.firstName.setProps({ ...this.children.firstName, value: this.props.firstName });
+    this.children.secondName.setProps({ ...this.children.secondName, value: this.props.secondName });
+    this.children.displayName.setProps({ ...this.children.displayName, value: this.props.displayName });
+    this.children.phone.setProps({ ...this.children.email, phone: this.props.phone });
     return this.compile(template, { ...this.props });
   }
 }

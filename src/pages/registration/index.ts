@@ -8,10 +8,10 @@ import Header from '../../components/form/header';
 import Content from './components/content';
 import Footer from '../../components/form/footer';
 import EntryField from '../../components/entryField';
-import createPage from '../../index';
-import { PagesName } from '../const';
 import regexpTest from '../../utils/regexpTest';
 import { RegexpName } from '../../const';
+import AuthController from '../../controllers/AuthController';
+import Routes from '../const';
 
 type TRegistrationPageProps = {
   header: Header
@@ -237,24 +237,22 @@ export default class RegistrationPage extends Block<TRegistrationPageProps> {
             result = true;
           }
           if (result) return;
-          console.log({
-            email: this.email,
-            login: this.login,
+          console.log(this.children.children);
+          AuthController.signup({
             first_name: this.firstName,
             second_name: this.secondName,
-            phone: this.phone,
+            login: this.login,
+            email: this.email,
             password: this.passwordOne,
+            phone: this.phone,
           });
-          createPage(PagesName.Authorization);
         },
       },
     });
 
     const link = new Link({
       text: 'Войти',
-      events: {
-        click: () => createPage(PagesName.Authorization),
-      },
+      route: Routes.Authorization,
     });
 
     this.children.header = new Header({ label: 'Регистрация' });
