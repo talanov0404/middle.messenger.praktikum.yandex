@@ -8,21 +8,21 @@ type TState<T = any> = {
 
 export default function withStore(mapStateToProps: (state: TState) => TState) {
   return function wrap(Component: typeof Block) {
-    let state: TState;
+    let currentState: TState;
     return class WithStore extends Component {
       constructor(props: TState) {
-        state = mapStateToProps(store.getState());
+        currentState = mapStateToProps(store.getState());
 
-        super({ ...props, ...state });
+        super({ ...props, ...currentState });
 
         store.on(StoreEvents.Updated, () => {
           const newState = mapStateToProps(store.getState());
 
-          if (!isEqual(state, newState)) {
+          if (!isEqual(currentState, newState)) {
             this.setProps({ ...newState });
           }
 
-          state = newState;
+          currentState = { ...newState };
         });
       }
     };

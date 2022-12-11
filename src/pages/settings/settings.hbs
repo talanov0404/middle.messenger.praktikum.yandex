@@ -3,10 +3,10 @@
         {{{buttonBack}}}
     </div>
     <div class="profile-page__main">
-        {{{header}}}
         {{#if isLoading}}
             {{{loader}}}
         {{else}}
+            {{{header}}}
             {{#if editData}}
                 {{{editFormData}}}
             {{else if editPassword}}
@@ -15,6 +15,7 @@
                 {{{profileData}}}
                 {{{footer}}}
             {{/if}}
+
         {{/if}}
     </div>
 </main>

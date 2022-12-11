@@ -1,18 +1,10 @@
-import Block, { IBlock } from '../../../../utils/Block';
+import Block from '../../../../utils/Block';
 import template from './profileData.hbs';
 import './profileData.scss';
 import ProfileField from './components/profileField';
+import withStore from '../../../../hocs/withStore';
 
-interface IProfileDataProps extends IBlock {
-  email: string,
-  login: string,
-  firstName: string,
-  secondName: string,
-  displayName: string,
-  phone: string,
-};
-
-export default class ProfileData extends Block<IProfileDataProps> {
+class ProfileDataBase extends Block {
   protected init() {
     this.children.email = new ProfileField({
       name: 'Почта',
@@ -26,17 +18,17 @@ export default class ProfileData extends Block<IProfileDataProps> {
 
     this.children.firstName = new ProfileField({
       name: 'Имя',
-      value: this.props.firstName,
+      value: this.props.first_name,
     });
 
     this.children.secondName = new ProfileField({
       name: 'Фамилия',
-      value: this.props.secondName,
+      value: this.props.second_name,
     });
 
     this.children.displayName = new ProfileField({
       name: 'Имя в чате',
-      value: this.props.displayName,
+      value: this.props.display_name,
     });
 
     this.children.phone = new ProfileField({
@@ -46,12 +38,16 @@ export default class ProfileData extends Block<IProfileDataProps> {
   }
 
   render() {
-    this.children.email.setProps({ ...this.children.email, value: this.props.email });
-    this.children.login.setProps({ ...this.children.login, value: this.props.login });
-    this.children.firstName.setProps({ ...this.children.firstName, value: this.props.firstName });
-    this.children.secondName.setProps({ ...this.children.secondName, value: this.props.secondName });
-    this.children.displayName.setProps({ ...this.children.displayName, value: this.props.displayName });
-    this.children.phone.setProps({ ...this.children.email, phone: this.props.phone });
+    this.children.email.setProps({ value: this.props.email });
+    this.children.login.setProps({ value: this.props.login });
+    this.children.firstName.setProps({ value: this.props.first_name });
+    this.children.secondName.setProps({ value: this.props.second_name });
+    this.children.displayName.setProps({ value: this.props.display_name });
+    this.children.phone.setProps({ value: this.props.phone });
     return this.compile(template, { ...this.props });
   }
 }
+
+const withData = withStore((state) => ({ ...state.user.data } || {}));
+const ProfileData = withData(ProfileDataBase);
+export default ProfileData;

@@ -1,112 +1,37 @@
 import Block from '../../../../utils/Block';
 import template from './formEditPassword.hbs';
 import './formEditPassword.scss';
-import EntryField from '../../../../components/entryField';
-import { RegexpName } from '../../../../const';
-import regexpTest from '../../../../utils/regexpTest';
-import Input from '../../../../components/input';
 import Button from '../../../../components/button';
+import EntryField from '../../../../components/entryField';
+import { Regexp } from '../../../../const';
+import validate from '../../../../utils/validate';
+import withStore from '../../../../hocs/withStore';
+import UsersController from '../../../../controllers/UsersController';
 
-type TFormEditPasswordProps = {
-  password: string,
-  handlerSaveButton: (data: Record<string, string>) => void,
-};
-
-export default class FormEditPassword extends Block<TFormEditPasswordProps> {
-  public password: string = this.props.password;
-  public passwordOld: string = '';
-  public passwordOne: string = '';
-  public passwordTwo: string = '';
-
-  protected blurHandler(elem: EntryField, regexp: RegexpName, value: string) {
-    elem.removeClass('focus');
-    if (!regexpTest(regexp, value)) {
-      elem.addClass('error');
-    } else {
-      elem.removeClass('error');
-    }
-  }
-
+class FormEditPasswordBase extends Block {
   protected init() {
-    const inputPasswordOld = new Input({
-      type: 'password',
-      name: 'password',
-      events: {
-        input: () => {
-          this.passwordOld = inputPasswordOld.value;
-        },
-        focus: () => {
-          (this.children.passwordOld as EntryField).addClass('focus');
-          (this.children.passwordOld as EntryField).removeClass('error');
-        },
-        blur: () => {
-          this.blurHandler(
-            this.children.passwordOld as EntryField,
-            RegexpName.Password,
-            this.passwordOld,
-          );
-        },
-      },
-    });
-
     this.children.passwordOld = new EntryField({
-      label: 'Старый пароль',
-      error: 'Неверный пароль',
-      input: inputPasswordOld,
-    });
-
-    const inputPasswordOne = new Input({
       type: 'password',
       name: 'password',
-      events: {
-        input: () => {
-          this.passwordOne = inputPasswordOne.value;
-        },
-        focus: () => {
-          (this.children.passwordOne as EntryField).addClass('focus');
-          (this.children.passwordOne as EntryField).removeClass('error');
-        },
-        blur: () => {
-          this.blurHandler(
-            this.children.passwordOne as EntryField,
-            RegexpName.Password,
-            this.passwordOne,
-          );
-        },
-      },
+      label: 'Старый пароль',
+      regexp: Regexp.password,
+      error: 'Неверный пароль',
     });
 
     this.children.passwordOne = new EntryField({
-      label: 'Пароль',
-      error: 'Неверный пароль',
-      input: inputPasswordOne,
-    });
-
-    const inputPasswordTwo = new Input({
       type: 'password',
       name: 'password',
-      events: {
-        input: () => {
-          this.passwordTwo = inputPasswordTwo.value;
-        },
-        focus: () => {
-          (this.children.passwordTwo as EntryField).addClass('focus');
-          (this.children.passwordTwo as EntryField).removeClass('error');
-        },
-        blur: () => {
-          this.blurHandler(
-            this.children.passwordTwo as EntryField,
-            RegexpName.Password,
-            this.passwordTwo,
-          );
-        },
-      },
+      label: 'Пароль',
+      regexp: Regexp.password,
+      error: 'Неверный пароль',
     });
 
     this.children.passwordTwo = new EntryField({
+      type: 'password',
+      name: 'password',
       label: 'Пароль (еще раз)',
+      regexp: Regexp.password,
       error: 'Пароли не совпадают',
-      input: inputPasswordTwo,
     });
 
     this.children.button = new Button({
@@ -114,23 +39,35 @@ export default class FormEditPassword extends Block<TFormEditPasswordProps> {
       events: {
         click: (event) => {
           event.preventDefault();
-          let result = false;
-          if (this.passwordOld !== this.password) {
+          let result = true;
+
+          const entryFields = Object.values(this.children)
+            .filter((child) => (child instanceof EntryField)) as [EntryField];
+
+          result = validate(entryFields);
+
+          const passwordOld = this.children.passwordOld as EntryField;
+          const passwordOne = this.children.passwordOne as EntryField;
+          const passwordTwo = this.children.passwordTwo as EntryField;
+
+          if (passwordOld.value !== this.props.password) {
             (this.children.passwordOld as EntryField).addClass('error');
             result = true;
           }
-          if (this.passwordOne !== this.passwordTwo) {
+
+          if (passwordOne !== passwordTwo) {
             (this.children.passwordOne as EntryField).addClass('error');
             (this.children.passwordTwo as EntryField).addClass('error');
             result = true;
           }
-          if (!regexpTest(RegexpName.Password, this.passwordOne)) {
-            (this.children.passwordOne as EntryField).addClass('error');
-            result = true;
-          }
-          if (result) return;
-          this.props.handlerSaveButton({
-            password: this.passwordOne,
+
+          if (!result) return;
+
+          this.props.handlerSaveButton();
+
+          UsersController.password({
+            oldPassword: passwordOld.value,
+            newPassword: passwordOne.value,
           });
         },
       },
@@ -141,3 +78,7 @@ export default class FormEditPassword extends Block<TFormEditPasswordProps> {
     return this.compile(template, { ...this.props });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user.data } || {}));
+const FormEditPassword = withUser(FormEditPasswordBase);
+export default FormEditPassword;

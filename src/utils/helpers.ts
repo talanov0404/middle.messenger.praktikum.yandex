@@ -16,7 +16,7 @@ export const merge = (lhs: Indexed, rhs: Indexed): Indexed => {
     try {
       if (typeof rhs[key] === 'object') {
         lhs[key] = merge(lhs[key] as Indexed, rhs[key] as Indexed);
-      } else if (typeof rhs[key] === 'number') {
+      } else {
         lhs[key] = rhs[key];
       }
     } catch (e) {

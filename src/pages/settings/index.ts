@@ -9,15 +9,12 @@ import Header from './components/header';
 import FormEditData from './components/formEditData';
 import FormEditPassword from './components/formEditPassword';
 import withStore from '../../hocs/withStore';
-import AuthController from '../../controllers/AuthController';
 import router from '../../utils/Router';
 import Routes from '../const';
 import Loader from '../../components/loader';
 
 class SettingsPageBase extends Block {
   protected init() {
-    AuthController.fetchUser();
-
     this.children.loader = new Loader();
 
     this.children.buttonBack = new Button({
@@ -27,52 +24,35 @@ class SettingsPageBase extends Block {
       },
     });
 
-    this.children.profileData = new ProfileData({
-      email: this.props.data.email,
-      login: this.props.data.login,
-      firstName: this.props.data.first_name,
-      secondName: this.props.data.second_name,
-      displayName: this.props.data.display_name,
-      phone: this.props.data.phone,
-    });
+    this.children.profileData = new ProfileData({});
 
     this.children.editFormData = new FormEditData({
-      email: this.props.data.email,
-      login: this.props.data.login,
-      firstName: this.props.data.first_name,
-      secondName: this.props.data.second_name,
-      displayName: this.props.data.display_name,
-      phone: this.props.data.phone,
-      handlerSaveButton: (data) => {
-        this.setProps({ ...this.props, editData: false });
-        this.children.profileData.setProps({ ...data });
-        console.log(data);
+      handlerSaveButton: () => {
+        this.setProps({ editData: false });
       },
     });
 
     this.children.editFormPassword = new FormEditPassword({
-      password: this.props.data.password,
-      handlerSaveButton: (data) => {
-        this.setProps({ ...this.props, editPassword: false });
-        console.log(data);
+      password: this.props.data?.password,
+      handlerSaveButton: () => {
+        this.setProps({ editPassword: false });
       },
     });
 
     this.children.header = new Header({
-      name: this.props.data.first_name,
+      name: this.props.data?.first_name,
     });
 
     this.children.footer = new Footer({
-      handlerEditData: () => this.setProps({ ...this.props, editData: true }),
-      handlerEditPassword: () => this.setProps({ ...this.props, editPassword: true }),
+      handlerEditData: () => this.setProps({ editData: true }),
+      handlerEditPassword: () => this.setProps({ editPassword: true }),
     });
   }
 
   render() {
-    console.log(JSON.stringify(this.props));
     return this.compile(template, { ...this.props });
   }
 }
 
-const withUser = withStore((state) => state.user || { isLoading: true });
+const withUser = withStore((state) => ({ ...state.user } || { isLoading: true }));
 export default withUser(SettingsPageBase);

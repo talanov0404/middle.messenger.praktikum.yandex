@@ -13,7 +13,7 @@ class AuthController {
 
       await this.fetchUser();
 
-      router.go(Routes.Settings);
+      router.go(Routes.Messenger);
     });
   }
 
@@ -21,16 +21,10 @@ class AuthController {
     await this.request(async () => {
       await this.api.signup(data);
 
-      this.fetchUser();
+      await this.fetchUser();
 
-      router.go(Routes.Settings);
+      router.go(Routes.Messenger);
     });
-  }
-
-  public async fetchUser() {
-    const user = await this.api.request();
-
-    store.set('user.data', user);
   }
 
   public async logout() {
@@ -39,6 +33,12 @@ class AuthController {
 
       router.go(Routes.Authorization);
     });
+  }
+
+  public async fetchUser() {
+    const user = await this.api.request();
+
+    store.set('user.data', user);
   }
 
   protected async request(req: () => void) {

@@ -9,6 +9,7 @@ type TProfileFieldProps = {
 
 export default class ProfileField extends Block<TProfileFieldProps> {
   render() {
+    console.log(this.props);
     return this.compile(template, { ...this.props });
   }
 }
