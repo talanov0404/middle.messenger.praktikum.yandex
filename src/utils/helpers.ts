@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-export type Indexed<T = unknown> = {
+export type Indexed<T = any> = {
   [key in string]: T;
 };
 
@@ -30,10 +30,6 @@ export const merge = (lhs: Indexed, rhs: Indexed): Indexed => {
 export const set = (object: Indexed | unknown, path: string, value: unknown): Indexed | unknown => {
   if (typeof object !== 'object' || object === null) {
     return object;
-  }
-
-  if (typeof path !== 'string') {
-    throw new Error('path must be string');
   }
 
   const keys: Array<string> = path.split('.');

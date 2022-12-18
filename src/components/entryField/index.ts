@@ -49,6 +49,7 @@ export default class EntryField extends Block<IEntryFieldProps> {
 
   public set value(newValue: string) {
     this.setProps({ ...this.props, value: newValue });
+    (this.children.input as Input).setProps({ ...this.props, value: newValue });
   }
 
   public get value(): string {

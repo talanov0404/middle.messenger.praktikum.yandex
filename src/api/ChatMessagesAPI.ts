@@ -2,7 +2,7 @@ import BaseAPI from './BaseAPI';
 
 export default class ChatMessagesAPI extends BaseAPI {
   constructor() {
-    super('api/v1/messages');
+    super('/messages');
   }
 
   public create() {

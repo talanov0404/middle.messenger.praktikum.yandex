@@ -7,6 +7,7 @@ import NotFoundPage from './pages/notFound';
 import SettingsPage from './pages/settings';
 import './style.scss';
 import AuthController from './controllers/AuthController';
+import ErrorPage from './pages/errorPage';
 
 document.addEventListener('DOMContentLoaded', async () => {
   Router
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Registrations, RegistrationPage)
     .use(Routes.Settings, SettingsPage)
     .use(Routes.Messenger, MessengerPage)
-    .use(Routes.Notfound, NotFoundPage);
+    .use(Routes.Notfound, NotFoundPage)
+    .use(Routes.Error, ErrorPage);
 
   let isProtectedRoute = true;
   const { pathname } = window.location;

@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../utils/Block';
+import Block from '../../utils/Block';
 import template from './authorization.hbs';
 import './authorization.scss';
 import Button from '../../components/button';
@@ -9,13 +9,7 @@ import Footer from '../../components/form/footer';
 import AuthController from '../../controllers/AuthController';
 import Routes from '../const';
 
-interface IAuthorizationPageProps extends IBlock {
-  header: Header,
-  content: Content,
-  footer: Footer
-}
-
-export default class AuthorizationPage extends Block<IAuthorizationPageProps> {
+export default class AuthorizationPage extends Block {
   protected init() {
     const button = new Button({
       label: 'Войти',
@@ -24,8 +18,7 @@ export default class AuthorizationPage extends Block<IAuthorizationPageProps> {
           event.preventDefault();
 
           const { data } = this.children.content as Content;
-          const result = (this.children.content as Content).isValid;
-          if (!result) return;
+          if (!(this.children.content as Content).isValid) return;
 
           AuthController.signin(data);
         },

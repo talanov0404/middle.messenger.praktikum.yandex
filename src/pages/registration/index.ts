@@ -24,8 +24,7 @@ export default class RegistrationPage extends Block<IRegistrationPageProps> {
           event.preventDefault();
 
           const { data } = this.children.content as Content;
-          const result = (this.children.content as Content).isValid;
-          if (!result) return;
+          if (!(this.children.content as Content).isValid) return;
 
           AuthController.signup(data);
         },

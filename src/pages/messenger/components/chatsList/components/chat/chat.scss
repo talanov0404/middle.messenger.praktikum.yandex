@@ -1,4 +1,4 @@
-@import "../../../../../src/colors";
+@import "../../../../../../colors";
 
 .chat {
   display: flex;
@@ -12,6 +12,10 @@
 
   &:last-child {
     border-bottom: 1px solid $border-color;
+  }
+
+  &.selected {
+    background-color: $selected-chat-bg;
   }
 
   &__avatar {

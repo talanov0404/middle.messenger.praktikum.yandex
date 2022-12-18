@@ -4,6 +4,7 @@ enum Routes {
   Settings = '/settings',
   Messenger = '/messenger',
   Notfound = '*',
+  Error = '/error',
 }
 
 export default Routes;

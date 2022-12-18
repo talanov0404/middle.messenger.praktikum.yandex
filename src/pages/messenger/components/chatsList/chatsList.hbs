@@ -1,0 +1,17 @@
+<div class="chats">
+    <header class="chats__header">
+        <div class="settings-link">
+            {{{settingsLink}}}
+        </div>
+        <input class="input" placeholder="поиск"/>
+    </header>
+    <section class="chats__list">
+        {{#if isLoaded }}
+            {{#each chats}}
+                {{{this}}}
+            {{/each}}
+        {{else}}
+            {{{loader}}}
+        {{/if}}
+    </section>
+</div>

@@ -1,41 +1,4 @@
-<main class="chats">
-    <div class="chats__left">
-        <header class="chats__header">
-            <div class="button-profile">
-                {{{link}}}
-                {{#if src}}
-                    <img src="{{src}}" class="icon"/>
-                {{/if}}
-            </div>
-            <input class="input" placeholder="поиск"/>
-        </header>
-        <section class="chats__list">
-            {{#each chatList}}
-                {{{this}}}
-            {{/each}}
-        </section>
-    </div>
-    <div class="chats__main">
-        {{#if selectedChat}}
-            <div class="messages">
-                <header class="messages__header">
-                    <div class="messages__info">
-                        <div class="messages__avatar">
-                        </div>
-                        <label class="name">{{name}}</label>
-                    </div>
-                    {{{buttonInfo}}}
-                </header>
-                <section class="messages__content">
-                </section>
-                <footer class="messages__footer">
-                    {{{buttonAddFile}}}
-                    {{{inputMessage}}}
-                    {{{buttonSend}}}
-                </footer>
-            </div>
-        {{else}}
-            <p class="text">Выберите чат чтобы отправить сообщение</p>
-        {{/if}}
-    </div>
+<main class="messenger-page">
+    {{{chatsList}}}
+    {{{messenger}}}
 </main>

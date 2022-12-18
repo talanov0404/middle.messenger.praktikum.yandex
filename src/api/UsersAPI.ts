@@ -1,6 +1,6 @@
 import BaseAPI from './BaseAPI';
 import {
-  User, Avatar, Password, Login, UserData,
+  User, Password, Login, UserData,
 } from '../types/interfaces';
 
 export default class UsersAPI extends BaseAPI {
@@ -12,7 +12,7 @@ export default class UsersAPI extends BaseAPI {
     return this.http.put('/profile', data);
   }
 
-  public avatar(data: Avatar): Promise<User> {
+  public avatar(data: FormData): Promise<User> {
     return this.http.put('/profile/avatar', data);
   }
 
@@ -24,7 +24,7 @@ export default class UsersAPI extends BaseAPI {
     return this.http.get(`/${id}`);
   }
 
-  public search(data: Login): Promise<User> {
+  public search(data: Login): Promise<User[]> {
     return this.http.post('/search', data);
   }
 

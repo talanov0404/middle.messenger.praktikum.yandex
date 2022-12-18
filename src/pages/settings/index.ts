@@ -33,13 +33,13 @@ class SettingsPageBase extends Block {
     });
 
     this.children.editFormPassword = new FormEditPassword({
-      password: this.props.data?.password,
       handlerSaveButton: () => {
         this.setProps({ editPassword: false });
       },
     });
 
     this.children.header = new Header({
+      avatar: this.props.data?.avatar,
       name: this.props.data?.first_name,
     });
 
@@ -50,6 +50,7 @@ class SettingsPageBase extends Block {
   }
 
   render() {
+    (this.children.header as Header).setProps({ ...this.props, avatar: this.props.data.avatar });
     return this.compile(template, { ...this.props });
   }
 }

@@ -37,38 +37,36 @@ class FormEditPasswordBase extends Block {
     this.children.button = new Button({
       label: 'Сохранить',
       events: {
-        click: (event) => {
+        click: async (event) => {
           event.preventDefault();
-          let result = true;
 
           const entryFields = Object.values(this.children)
             .filter((child) => (child instanceof EntryField)) as [EntryField];
 
-          result = validate(entryFields);
+          let result = validate(entryFields);
 
           const passwordOld = this.children.passwordOld as EntryField;
           const passwordOne = this.children.passwordOne as EntryField;
           const passwordTwo = this.children.passwordTwo as EntryField;
 
-          if (passwordOld.value !== this.props.password) {
-            (this.children.passwordOld as EntryField).addClass('error');
-            result = true;
-          }
-
-          if (passwordOne !== passwordTwo) {
-            (this.children.passwordOne as EntryField).addClass('error');
+          if (passwordOne.value !== passwordTwo.value) {
             (this.children.passwordTwo as EntryField).addClass('error');
-            result = true;
+            result = false;
           }
 
           if (!result) return;
 
-          this.props.handlerSaveButton();
-
-          UsersController.password({
+          await UsersController.password({
             oldPassword: passwordOld.value,
             newPassword: passwordOne.value,
           });
+
+          if (this.props.error) {
+            (this.children.passwordOld as EntryField).addClass('error');
+            return;
+          }
+
+          this.props.handlerSaveButton();
         },
       },
     });
@@ -79,6 +77,6 @@ class FormEditPasswordBase extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user.data } || {}));
+const withUser = withStore((state) => ({ ...state.user } || {}));
 const FormEditPassword = withUser(FormEditPasswordBase);
 export default FormEditPassword;

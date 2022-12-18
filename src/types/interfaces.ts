@@ -19,7 +19,6 @@ export interface User {
   display_name: string;
   login: string;
   email: string;
-  password: string;
   phone: string;
   avatar: string;
 }
@@ -34,7 +33,7 @@ export interface UserData {
 }
 
 export interface Avatar {
-  avatar: string;
+  avatar: FormData;
 }
 
 export interface Login {
@@ -44,4 +43,43 @@ export interface Login {
 export interface Password {
   oldPassword: string;
   newPassword: string;
+}
+
+export interface Resources {
+  id: number,
+  user_id: number,
+  path: string,
+  filename: string,
+  content_type: string,
+  content_size: number,
+  upload_date: string
+}
+
+export interface ChatInfo {
+  id: number;
+  title: string;
+  avatar: string;
+  unread_count: number;
+  last_message: {
+    user: User,
+    time: string;
+    content: string;
+  }
+}
+
+export interface Message {
+  chat_id: number;
+  time: string;
+  type: string;
+  user_id: number;
+  content: string;
+  file?: {
+    id: number;
+    user_id: number;
+    path: string;
+    filename: string;
+    content_type: string;
+    content_size: number;
+    upload_date: string;
+  }
 }

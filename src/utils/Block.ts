@@ -42,7 +42,7 @@ export default class Block<P extends IBlock = any> {
   private _element: HTMLElement | null = null;
   protected props: TProps<P>;
   private eventBus: () => EventBus<TBlockEvents<TProps<P>>>;
-  protected children: Record<string, Block>;
+  protected children: Record<string, Block | Block[]>;
 
   constructor(propsAndChildren: TProps<P> = {} as TProps<P>) {
     const eventBus = new EventBus<TBlockEvents<TProps<P>>>();
