@@ -3,6 +3,7 @@ import store from '../utils/Store';
 import router from '../utils/Router';
 import { SigninData, SignupData } from '../types/interfaces';
 import Routes from '../pages/const';
+import MessagesController from './MessagesController';
 
 class AuthController {
   private readonly api = new AuthAPI();
@@ -30,6 +31,8 @@ class AuthController {
   public async logout() {
     await this.request(async () => {
       await this.api.logout();
+
+      MessagesController.closeAll();
 
       router.go(Routes.Authorization);
     });

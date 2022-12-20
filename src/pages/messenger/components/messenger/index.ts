@@ -10,6 +10,7 @@ import dotsHorizontal from '../../../../../static/dots-horizontal.svg';
 import { ChatInfo, Message as MessageInfo } from '../../../../types/interfaces';
 import withStore from '../../../../hocs/withStore';
 import Menu from './components/menu';
+import MessagesController from '../../../../controllers/MessagesController';
 
 interface IMessengerProps extends IBlock {
   selectedChat: number,
@@ -18,18 +19,10 @@ interface IMessengerProps extends IBlock {
 }
 
 class MessengerBase extends Block<IMessengerProps> {
-  private message: string = '';
-
   protected init() {
     this.children.inputMessage = new Input({
       type: 'text',
       name: 'message',
-      events: {
-        input: () => {
-          this.message = ((this.children.inputMessage as Input)
-            .getContent() as HTMLInputElement).value;
-        },
-      },
     });
 
     this.children.buttonAddFile = new Button({
@@ -45,13 +38,15 @@ class MessengerBase extends Block<IMessengerProps> {
       events: {
         click: () => {
           let result = false;
-          if (!this.message) {
+          const { value } = (this.children.inputMessage as Input);
+
+          if (!value) {
             result = true;
           }
+
           if (result) return;
-          console.log({
-            message: this.message,
-          });
+
+          MessagesController.sendMessage(this.props.selectedChat, value);
         },
       },
     });
@@ -86,14 +81,14 @@ const withSelectedChatMessages = withStore((state) => {
     return {
       messages: [],
       selectedChat: undefined,
-      userId: state.user.data.id,
+      userId: state.user?.data?.id,
     };
   }
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],
     selectedChat: state.selectedChat,
-    userId: selectedChat!.id,
+    userId: state.user?.data?.id,
     name: selectedChat!.title,
     avatar: selectedChat!.avatar,
   };

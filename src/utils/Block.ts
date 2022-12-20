@@ -6,12 +6,12 @@ interface IMakeChildren<P> {
   props: P
 }
 
-const EVENTS = {
-  INIT: 'init',
-  FLOW_CDM: 'flow:component-did-mount',
-  FLOW_CDU: 'flow:component-did-update',
-  FLOW_RENDER: 'flow:render',
-} as const;
+enum EVENTS {
+  INIT = 'init',
+  FLOW_CDM = 'flow:component-did-mount',
+  FLOW_CDU = 'flow:component-did-update',
+  FLOW_RENDER = 'flow:render',
+}
 
 type TBlockEvents<P> = {
   [EVENTS.INIT]: [];
@@ -31,13 +31,6 @@ type TProps<P extends IBlock = any> = {
 } & P;
 
 export default class Block<P extends IBlock = any> {
-  static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
-  } as const;
-
   public id: string = makeUUID();
   private _element: HTMLElement | null = null;
   protected props: TProps<P>;
@@ -51,7 +44,7 @@ export default class Block<P extends IBlock = any> {
     this.props = this.makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
+    eventBus.emit(EVENTS.INIT);
   }
 
   private _getPropsAndChildren(propsAndChildren: TProps<P>): IMakeChildren<TProps<P>> {
@@ -80,7 +73,7 @@ export default class Block<P extends IBlock = any> {
         const oldTarget = { ...target };
         // eslint-disable-next-line no-param-reassign
         target[prop as keyof TProps<P>] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        self.eventBus().emit(EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {
@@ -90,15 +83,15 @@ export default class Block<P extends IBlock = any> {
   }
 
   private registerEvents(eventBus: EventBus<TBlockEvents<TProps<P>>>) {
-    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(EVENTS.INIT, this._init.bind(this));
+    eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   protected _init() {
     this.init();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
   protected init() {
@@ -112,13 +105,13 @@ export default class Block<P extends IBlock = any> {
   }
 
   public dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(EVENTS.FLOW_CDM);
   }
 
   private _componentDidUpdate(oldProps: TProps<P>, newProps: TProps<P>) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this.eventBus().emit(EVENTS.FLOW_RENDER);
     }
   }
 

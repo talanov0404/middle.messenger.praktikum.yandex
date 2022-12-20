@@ -1,5 +1,6 @@
 import ChatsAPI from '../api/ChatsAPI';
 import store from '../utils/Store';
+import MessagesController from './MessagesController';
 
 class ChatsController {
   private readonly api = new ChatsAPI();
@@ -26,6 +27,8 @@ class ChatsController {
     const chats = await this.api.getChat();
 
     store.set('chats', chats);
+
+    await Promise.all(chats.map(async (chat) => MessagesController.connect(chat.id)));
   }
 
   public async addUserToChat(id: number, userId: number) {
