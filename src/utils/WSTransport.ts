@@ -62,28 +62,17 @@ export default class WSTransport extends EventBus<TWSTransportEvents<any>> {
   private subscribe(socket: WebSocket) {
     socket.addEventListener('open', () => {
       this.emit(WSTransportEvents.Connected);
-      console.log('Соединение установлено');
     });
 
-    socket.addEventListener('close', (event) => {
+    socket.addEventListener('close', () => {
       this.emit(WSTransportEvents.Close);
-
-      if (event.wasClean) {
-        console.log('Соединение закрыто чисто');
-      } else {
-        console.log('Обрыв соединения');
-      }
-
-      console.log(`Код: ${event.code} | Причина:`, event);
     });
 
     socket.addEventListener('error', (e) => {
-      console.log('Ошибка', e);
       this.emit(WSTransportEvents.Error, e);
     });
 
     socket.addEventListener('message', (message) => {
-      console.log('Получены данные', message.data);
       const data = JSON.parse(message.data);
 
       if (data.type === 'pong') {

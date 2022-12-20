@@ -29,6 +29,7 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+    max-height: calc(100% - 54px);
 
     &__header {
       display: flex;
@@ -79,8 +80,16 @@
 
     &__content {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       height: 100%;
+      overflow: auto;
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: max-content;
+      }
     }
 
     &__footer {

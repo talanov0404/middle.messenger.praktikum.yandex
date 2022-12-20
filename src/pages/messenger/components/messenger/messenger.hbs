@@ -1,7 +1,7 @@
 <div class="messenger">
     <header class="messages__header">
         <div class="messages__info">
-            {{#if userId}}
+            {{#if name}}
                 <div class="messages__avatar">
                     {{#if avatar}}
                         <img class="avatar__img"
@@ -20,6 +20,11 @@
     {{#if selectedChat}}
         <div class="messages">
             <section class="messages__content">
+                <div class="content">
+                    {{#each messages}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
             </section>
             <footer class="messages__footer">
                 {{{buttonAddFile}}}

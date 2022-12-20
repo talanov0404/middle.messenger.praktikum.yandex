@@ -11,6 +11,7 @@ import { ChatInfo, Message as MessageInfo } from '../../../../types/interfaces';
 import withStore from '../../../../hocs/withStore';
 import Menu from './components/menu';
 import MessagesController from '../../../../controllers/MessagesController';
+import Message from './components/message';
 
 interface IMessengerProps extends IBlock {
   selectedChat: number,
@@ -20,6 +21,8 @@ interface IMessengerProps extends IBlock {
 
 class MessengerBase extends Block<IMessengerProps> {
   protected init() {
+    this.children.messages = this.createMessages(this.props);
+
     this.children.inputMessage = new Input({
       type: 'text',
       name: 'message',
@@ -47,6 +50,8 @@ class MessengerBase extends Block<IMessengerProps> {
           if (result) return;
 
           MessagesController.sendMessage(this.props.selectedChat, value);
+
+          (this.children.inputMessage as Input).value = '';
         },
       },
     });
@@ -65,6 +70,18 @@ class MessengerBase extends Block<IMessengerProps> {
         this.setProps({ ...this.props, activeMenu: false });
       },
     });
+  }
+
+  protected componentDidUpdate(oldProps: IMessengerProps, newProps: IMessengerProps): boolean {
+    this.children.messages = this.createMessages(newProps);
+
+    return oldProps !== newProps;
+  }
+
+  private createMessages(props: IMessengerProps) {
+    return props.messages.map((data) => (
+      new Message({ ...data, isMine: props.userId === data.user_id })
+    ));
   }
 
   render() {
@@ -86,7 +103,7 @@ const withSelectedChatMessages = withStore((state) => {
   }
 
   return {
-    messages: (state.messages || {})[selectedChatId] || [],
+    messages: [...(state.messages || {})[selectedChatId]] || [],
     selectedChat: state.selectedChat,
     userId: state.user?.data?.id,
     name: selectedChat!.title,

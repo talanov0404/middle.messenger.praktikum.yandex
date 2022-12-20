@@ -16,13 +16,6 @@ interface IChatProps extends IBlock {
 }
 
 class ChatBase extends Block<IChatProps> {
-/*  protected componentDidUpdate(oldProps, newProps): boolean {
-    const { avatar } = this.props;
-    if (avatar) {
-      ResourcesController.fetchData(avatar);
-    }
-  } */
-
   protected render() {
     return this.compile(template, {
       ...this.props,
@@ -31,9 +24,14 @@ class ChatBase extends Block<IChatProps> {
   }
 }
 
-const withSelectedChat = withStore((state) => ({
-  selectedChat: ((state.chats || []) as ChatInfo[]).find(({ id }) => id === state.selectedChat),
-}));
+const withSelectedChat = withStore((state) => {
+  const selectedChat = ((state.chats || []) as ChatInfo[])
+    .find(({ id }) => id === state.selectedChat);
+
+  return {
+    selectedChat,
+  };
+});
 
 const Chat = withSelectedChat(ChatBase as typeof Block) as typeof Block;
 export default Chat;

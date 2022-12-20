@@ -6,13 +6,13 @@
         {{/if}}
     </div>
     <div class="chat__main">
-        <label class="name">{{title}}</label>
-        <label class="message">{{last_message.content}}</label>
+        <label class="chat__main__name">{{title}}</label>
+        <label class="chat__main__message">{{last_message.content}}</label>
     </div>
     <div class="chat__info">
-        <label class="time">{{last_message.time}}</label>
+        <label class="chat__info__time">{{time}}</label>
         {{#if unread_count}}
-            <label class="count">{{unread_count}}</label>
+            <label class="chat__info__count">{{unread_count}}</label>
         {{/if}}
     </div>
 </div>

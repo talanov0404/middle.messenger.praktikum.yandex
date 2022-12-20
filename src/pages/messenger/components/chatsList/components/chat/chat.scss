@@ -37,14 +37,14 @@
     padding-right: 15px;
     width: 100%;
 
-    .name {
+    &__name {
       font-weight: 600;
       font-size: 13px;
       line-height: 13px;
       color: $font-color;
     }
 
-    .message {
+    &__message {
       font-weight: 500;
       font-size: 12px;
       line-height: 15px;
@@ -58,14 +58,14 @@
     justify-content: space-between;
     min-width: 25px;
 
-    .time {
+    &__time {
       font-weight: 500;
       font-size: 9px;
       line-height: 13px;
       color: $font-placeholder-color;
     }
 
-    .count {
+    &__count {
       display: flex;
       flex-direction: row;
       align-items: center;

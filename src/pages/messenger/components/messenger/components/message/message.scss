@@ -1,0 +1,17 @@
+@import "../../../../../../colors";
+
+.message {
+  align-self: flex-start;
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $message-bg;
+  max-width: 402px;
+  margin: 5px;
+  border-radius: 0 12px 12px;
+
+  &__mine {
+    border-radius: 12px 12px 0;
+    background-color: $mine-message-bg;
+    align-self: flex-end;
+  }
+}

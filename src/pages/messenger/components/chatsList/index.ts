@@ -40,6 +40,7 @@ class ChatsListBase extends Block<ChatsListProps> {
     return props.chats.map<Block>((data) => (
       new Chat({
         ...data,
+        time: data?.last_message?.time ? new Date(data.last_message.time).toLocaleString() : '',
         events: {
           click: () => {
             ChatsController.selectChat(data.id);
@@ -55,5 +56,5 @@ class ChatsListBase extends Block<ChatsListProps> {
 
 const withChats = withStore((state) => ({ chats: [...(state.chats || [])] }));
 
-const ChatsList = withChats(ChatsListBase as typeof Block);
-export default ChatsList;
+const Index = withChats(ChatsListBase as typeof Block);
+export default Index;
