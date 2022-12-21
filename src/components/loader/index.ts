@@ -7,7 +7,7 @@ interface ILoaderProps extends IBlock {
 }
 
 export default class Loader extends Block<ILoaderProps> {
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

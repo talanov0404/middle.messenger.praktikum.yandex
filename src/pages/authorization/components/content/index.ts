@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block, { IBlock } from '../../../../utils/Block';
 import template from './content.hbs';
 import EntryField from '../../../../components/entryField';
 import Input from '../../../../components/input';
@@ -6,7 +6,12 @@ import { SigninData } from '../../../../types/interfaces';
 import { Regexp } from '../../../../const';
 import validate from '../../../../utils/validate';
 
-export default class Content extends Block {
+interface IContentProps extends IBlock {
+  login: EntryField
+  password: EntryField,
+}
+
+export default class Content extends Block<IContentProps> {
   public get data(): SigninData {
     const values = Object
       .values(this.children)
@@ -40,7 +45,7 @@ export default class Content extends Block {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

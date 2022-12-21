@@ -13,8 +13,13 @@ export default class Header extends Block<IHeaderProps> {
     this.children.avatar = new Avatar({ avatar: this.props.avatar });
   }
 
-  render() {
+  protected componentDidUpdate(oldProps: IHeaderProps, newProps: IHeaderProps) {
     (this.children.avatar as Avatar).setProps({ avatar: this.props.avatar });
+
+    return oldProps !== newProps;
+  }
+
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

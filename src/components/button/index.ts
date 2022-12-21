@@ -11,7 +11,7 @@ interface IButtonProps extends IBlock {
 }
 
 export default class Button extends Block<IButtonProps> {
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block, { IBlock } from '../../../../utils/Block';
 import template from './content.hbs';
 import EntryField from '../../../../components/entryField';
 import Input from '../../../../components/input';
@@ -6,7 +6,17 @@ import { SignupData } from '../../../../types/interfaces';
 import { Regexp } from '../../../../const';
 import validate from '../../../../utils/validate';
 
-export default class Content extends Block {
+interface IContentProps extends IBlock {
+  email: EntryField,
+  login: EntryField
+  firstName: EntryField,
+  secondName: EntryField
+  phone: EntryField,
+  passwordOne: EntryField,
+  passwordTwo: EntryField,
+}
+
+export default class Content extends Block<IContentProps> {
   public get data(): SignupData {
     const values = Object
       .values(this.children)
@@ -88,7 +98,7 @@ export default class Content extends Block {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

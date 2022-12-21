@@ -25,7 +25,7 @@ class BaseLink extends Block<ILinkProps> {
     this.props.router.go(this.props.route);
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

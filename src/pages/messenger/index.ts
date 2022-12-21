@@ -18,7 +18,7 @@ export default class MessengerPage extends Block {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

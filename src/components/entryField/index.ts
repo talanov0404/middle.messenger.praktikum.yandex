@@ -81,7 +81,7 @@ export default class EntryField extends Block<IEntryFieldProps> {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

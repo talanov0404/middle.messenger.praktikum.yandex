@@ -21,7 +21,7 @@ class ResourcesController {
   }
 
   protected async request(req: () => void) {
-    store.set('resources.isUpload', true);
+    store.set('resources.isUploading', true);
 
     try {
       req();
@@ -31,7 +31,7 @@ class ResourcesController {
       console.error(e.message);
       store.set('resources.error', e.message);
     } finally {
-      store.set('resources.isUpload', false);
+      store.set('resources.isUploading', false);
     }
   }
 }

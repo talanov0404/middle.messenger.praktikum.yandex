@@ -84,7 +84,7 @@ class MessengerBase extends Block<IMessengerProps> {
     ));
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props, src: arrow });
   }
 }

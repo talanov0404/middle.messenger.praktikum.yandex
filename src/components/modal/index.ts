@@ -41,9 +41,14 @@ export default class Modal extends Block<IModalProps> {
     });
   }
 
-  render() {
+  protected componentDidUpdate(oldProps: IModalProps, newProps: IModalProps): boolean {
     (this.children.content as Block).setProps({ ...this.props });
     (this.children.applyButton as Button).setProps({ label: this.props.buttonLabel });
+
+    return oldProps !== newProps;
+  }
+
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }
