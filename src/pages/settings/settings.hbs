@@ -1,0 +1,21 @@
+<main class="profile-page">
+    <div class="profile-page__back">
+        {{{buttonBack}}}
+    </div>
+    <div class="profile-page__main">
+        {{#if isLoading}}
+            {{{loader}}}
+        {{else}}
+            {{{header}}}
+            {{#if editData}}
+                {{{editFormData}}}
+            {{else if editPassword}}
+                {{{editFormPassword}}}
+            {{else}}
+                {{{profileData}}}
+                {{{footer}}}
+            {{/if}}
+
+        {{/if}}
+    </div>
+</main>

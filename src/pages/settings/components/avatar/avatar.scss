@@ -1,0 +1,46 @@
+@import "../../../../../src/colors";
+
+.avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 128px;
+  height: 128px;
+  background: $bg-input-color;
+  border-radius: 64px;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  .update-avatar {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: $black-color;
+    opacity: 0.5;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 14px;
+    text-align: center;
+    color: $white-color;
+  }
+
+  &:hover {
+    .update-avatar {
+      display: flex;
+    }
+  }
+
+  &__img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+  }
+}

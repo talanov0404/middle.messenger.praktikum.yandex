@@ -1,0 +1,18 @@
+<div class="chat {{#if isSelected}}selected{{/if}}">
+    <div class="chat__avatar">
+        {{#if avatar}}
+            <img class="avatar__img"
+                 src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+        {{/if}}
+    </div>
+    <div class="chat__main">
+        <label class="chat__main__name">{{title}}</label>
+        <label class="chat__main__message">{{last_message.content}}</label>
+    </div>
+    <div class="chat__info">
+        <label class="chat__info__time">{{time}}</label>
+        {{#if unread_count}}
+            <label class="chat__info__count">{{unread_count}}</label>
+        {{/if}}
+    </div>
+</div>

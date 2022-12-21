@@ -1,14 +1,14 @@
-import Block from '../../../utils/Block';
+import Block, { IBlock } from '../../../utils/Block';
 import template from './footer.hbs';
 import Button from '../../button';
 import Link from '../../link';
 
-type TFooterProps = {
+interface IFooterProps extends IBlock {
   button: Button;
-  link: Link
-};
+  link: InstanceType<typeof Link>
+}
 
-export default class Footer extends Block<TFooterProps> {
+export default class Footer extends Block<IFooterProps> {
   render() {
     return this.compile(template, { ...this.props });
   }

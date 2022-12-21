@@ -1,8 +1,8 @@
-import Block from '../../utils/Block';
+import Block, { IBlock } from '../../utils/Block';
 import template from './input.hbs';
 import './input.scss';
 
-type TInputProps = {
+interface IInputProps extends IBlock {
   type?: string,
   name: string,
   value?: string,
@@ -11,9 +11,9 @@ type TInputProps = {
     blur?: (event: Event) => void,
     focus?: (event: Event) => void,
   },
-};
+}
 
-export default class Input extends Block<TInputProps> {
+export default class Input extends Block<IInputProps> {
   public set value(newValue: string) {
     this.setProps({ ...this.props, value: newValue });
   }

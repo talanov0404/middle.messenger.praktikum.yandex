@@ -1,0 +1,70 @@
+@import "../../../../../src/colors";
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 310px;
+  border-right: 1px solid $border-color;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 102px;
+    padding: 0 10px;
+
+    .settings-link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      box-sizing: border-box;
+      width: 100%;
+      height: 56px;
+
+      .link {
+        width: 100%;
+        height: 12px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 12px;
+        text-align: right;
+        color: $font-placeholder-color;
+        padding: 0 12px;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .input {
+      width: 100%;
+      height: 32px;
+      background-color: $bg-input-color;
+      border-radius: 5px;
+      padding: 8px;
+      border: none;
+
+      ::placeholder {
+        margin-left: auto;
+        text-align: center;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: auto;
+    padding: 0 10px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

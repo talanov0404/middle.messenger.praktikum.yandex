@@ -1,19 +1,43 @@
+import Router from './utils/Router';
+import Routes from './pages/const';
+import AuthorizationPage from './pages/authorization';
+import RegistrationPage from './pages/registration';
+import MessengerPage from './pages/messenger';
+import NotFoundPage from './pages/notFound';
+import SettingsPage from './pages/settings';
 import './style.scss';
-import { Pages, PagesName } from './pages/const';
+import AuthController from './controllers/AuthController';
+import ErrorPage from './pages/errorPage';
 
-type TPages = keyof typeof Pages;
+document.addEventListener('DOMContentLoaded', async () => {
+  Router
+    .use(Routes.Authorization, AuthorizationPage)
+    .use(Routes.Registrations, RegistrationPage)
+    .use(Routes.Settings, SettingsPage)
+    .use(Routes.Messenger, MessengerPage)
+    .use(Routes.Notfound, NotFoundPage)
+    .use(Routes.Error, ErrorPage);
 
-const createPage = (name: TPages) => {
-  const root: HTMLElement | null = document.getElementById('root');
-  const page: HTMLElement | null = new Pages[name]().getContent();
-  if (root && page) {
-    root.innerHTML = '';
-    root.append(page);
+  let isProtectedRoute = true;
+  const { pathname } = window.location;
+
+  if (pathname === Routes.Authorization || pathname === Routes.Registrations) {
+    isProtectedRoute = false;
   }
-};
 
-export default createPage;
+  try {
+    await AuthController.fetchUser();
 
-document.addEventListener('DOMContentLoaded', () => {
-  createPage(PagesName.Authorization);
+    Router.start();
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.Messenger);
+    }
+  } catch (e) {
+    Router.start();
+
+    if (isProtectedRoute) {
+      Router.go(Routes.Authorization);
+    }
+  }
 });

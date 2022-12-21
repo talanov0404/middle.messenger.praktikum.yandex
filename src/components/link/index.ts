@@ -1,16 +1,34 @@
 import Block from '../../utils/Block';
+import { IPropsWithRouter, withRouter } from '../../hocs/withRouter';
 import template from './link.hbs';
 import './link.scss';
 
-type TLinkProps = {
+export interface ILinkProps extends IPropsWithRouter {
   text: string,
+  route: string,
   events?: {
     click?: (event?: MouseEvent) => void,
   },
-};
+}
 
-export default class Link extends Block<TLinkProps> {
+class BaseLink extends Block<ILinkProps> {
+  constructor(props: ILinkProps) {
+    super({
+      ...props,
+      events: {
+        click: () => this.navigate(),
+      },
+    });
+  }
+
+  navigate() {
+    this.props.router.go(this.props.route);
+  }
+
   render() {
-    return this.compile(template, { text: this.props.text });
+    return this.compile(template, { ...this.props });
   }
 }
+
+const Link = withRouter(BaseLink);
+export default Link;

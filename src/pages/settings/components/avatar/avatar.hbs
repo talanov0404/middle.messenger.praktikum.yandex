@@ -1,0 +1,9 @@
+<div class="avatar">
+    {{#if avatar}}
+        <img class="avatar__img" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+    {{/if}}
+    <div class="update-avatar">Поменять <br> аватар</div>
+    {{#if edit}}
+        {{{modal}}}
+    {{/if}}
+</div>

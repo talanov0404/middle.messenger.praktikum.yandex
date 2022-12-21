@@ -1,0 +1,14 @@
+<div class="modal-box">
+    <div class="modal">
+        <header class="modal__header">
+            <lablel class="label">{{name}}</lablel>
+        </header>
+        {{{content}}}
+        <footer class="modal__footer">
+            {{{applyButton}}}
+            {{#if error}}
+                <span class="modal__footer__error">{{error}}</span>
+            {{/if}}
+        </footer>
+    </div>
+</div>

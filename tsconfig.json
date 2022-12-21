@@ -7,17 +7,18 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
+    "outDir": "dist",
+    "declaration": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
     "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "skipLibCheck": true,
     "lib": [
       "ESNext",
       "DOM"
     ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-  ],
-  "exclude": ["node_modules", "dist"]
+  }
 }

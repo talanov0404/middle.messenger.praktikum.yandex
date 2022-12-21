@@ -1,0 +1,40 @@
+<div class="messenger">
+    <header class="messages__header">
+        <div class="messages__info">
+            {{#if name}}
+                <div class="messages__avatar">
+                    {{#if avatar}}
+                        <img class="avatar__img"
+                             src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+                    {{/if}}
+                </div>
+                <label class="name">{{name}}</label>
+            {{/if}}
+        </div>
+        {{{chatAction}}}
+        {{#if activeMenu}}
+            {{{headerMenu}}}
+        {{/if}}
+    </header>
+
+    {{#if selectedChat}}
+        <div class="messages">
+            <section class="messages__content">
+                <div class="content">
+                    {{#each messages}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+            </section>
+            <footer class="messages__footer">
+                {{{buttonAddFile}}}
+                {{{inputMessage}}}
+                {{{buttonSend}}}
+            </footer>
+        </div>
+    {{else}}
+        <div class="closed-chats">
+            <p class="text">Выберите чат чтобы отправить сообщение</p>
+        </div>
+    {{/if}}
+</div>

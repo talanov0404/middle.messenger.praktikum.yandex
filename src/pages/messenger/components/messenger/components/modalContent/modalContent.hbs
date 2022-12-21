@@ -1,0 +1,9 @@
+<div class="modal-content">
+    {{#if removeContent}}
+        <label class="text-warning">Вы действительно хотите удалить чат?</label>
+    {{else if addChat}}
+        {{{chatName}}}
+    {{else}}
+        {{{login}}}
+    {{/if}}
+</div>
