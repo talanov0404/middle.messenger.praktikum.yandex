@@ -16,6 +16,7 @@ class ChatsController {
   async delete(id: number) {
     await this.request(async () => {
       store.set('selectedChat', undefined);
+      store.set('chats', undefined);
 
       await this.api.delete(id);
 
