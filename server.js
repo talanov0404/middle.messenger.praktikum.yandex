@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.static('./dist/'));
 
-app.use("/*", (_req, res) => {
+app.use("*", (_req, res) => {
   res.sendFile(__dirname + "/dist/index.html");
 });
 
