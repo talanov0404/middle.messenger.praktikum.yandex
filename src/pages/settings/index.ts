@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block, { IBlock } from '../../utils/Block';
 import template from './settings.hbs';
 import './settings.scss';
 import Button from '../../components/button';
@@ -12,8 +12,20 @@ import withStore from '../../hocs/withStore';
 import router from '../../utils/Router';
 import Routes from '../const';
 import Loader from '../../components/loader';
+import { User } from '../../types/interfaces';
 
-class SettingsPageBase extends Block {
+interface ISettingsPageProps extends IBlock {
+  loader: Loader,
+  editData: boolean,
+  editPassword: boolean,
+  data: User,
+  buttonBack: Button,
+  profileData: typeof ProfileData,
+  editFormData: typeof FormEditData,
+  editFormPassword: typeof FormEditPassword,
+}
+
+class SettingsPageBase extends Block<ISettingsPageProps> {
   protected init() {
     this.children.loader = new Loader();
 
@@ -28,13 +40,13 @@ class SettingsPageBase extends Block {
 
     this.children.editFormData = new FormEditData({
       handlerSaveButton: () => {
-        this.setProps({ editData: false });
+        this.setProps({ ...this.props, editData: false });
       },
     });
 
     this.children.editFormPassword = new FormEditPassword({
       handlerSaveButton: () => {
-        this.setProps({ editPassword: false });
+        this.setProps({ ...this.props, editPassword: false });
       },
     });
 
@@ -44,16 +56,22 @@ class SettingsPageBase extends Block {
     });
 
     this.children.footer = new Footer({
-      handlerEditData: () => this.setProps({ editData: true }),
-      handlerEditPassword: () => this.setProps({ editPassword: true }),
+      handlerEditData: () => this.setProps({ ...this.props, editData: true }),
+      handlerEditPassword: () => this.setProps({ ...this.props, editPassword: true }),
     });
   }
 
-  render() {
-    (this.children.header as Header).setProps({ ...this.props, avatar: this.props.data.avatar });
+  protected componentDidUpdate(oldProps: ISettingsPageProps, newProps: ISettingsPageProps) {
+    (this.children.header as Header)
+      .setProps({ name: this.props.data.first_name, avatar: this.props.data.avatar });
+
+    return oldProps !== newProps;
+  }
+
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }
 
 const withUser = withStore((state) => ({ ...state.user } || { isLoading: true }));
-export default withUser(SettingsPageBase);
+export default withUser(SettingsPageBase as typeof Block);

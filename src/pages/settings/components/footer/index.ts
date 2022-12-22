@@ -37,7 +37,7 @@ export default class Footer extends Block<IFooterProps> {
     this.children.exitProfile.getContent()?.classList.add('button-logout');
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

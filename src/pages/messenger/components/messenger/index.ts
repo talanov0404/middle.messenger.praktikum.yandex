@@ -84,7 +84,7 @@ class MessengerBase extends Block<IMessengerProps> {
     ));
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props, src: arrow });
   }
 }
@@ -103,8 +103,8 @@ const withSelectedChatMessages = withStore((state) => {
   }
 
   return {
-    messages: [...(state.messages || {})[selectedChatId]] || [],
-    selectedChat: state.selectedChat,
+    messages: [...(state.messages || {})[selectedChatId] || []],
+    selectedChat: selectedChatId,
     userId: state.user?.data?.id,
     name: selectedChat!.title,
     avatar: selectedChat!.avatar,

@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block, { IBlock } from '../../../../utils/Block';
 import template from './formEditData.hbs';
 import './formEditData.scss';
 import Button from '../../../../components/button';
@@ -9,9 +9,55 @@ import validate from '../../../../utils/validate';
 import withStore from '../../../../hocs/withStore';
 import UsersController from '../../../../controllers/UsersController';
 
-class FormEditDataBase extends Block {
+interface IFormEditDataProps extends IBlock {
+  email: string,
+  login: string,
+  first_name: string,
+  second_name: string,
+  display_name: string,
+  phone: string,
+  handlerSaveButton: () => void,
+  emailField: EntryField,
+  loginField: EntryField,
+  firstName: EntryField,
+  secondName: EntryField,
+  displayName: EntryField,
+  phoneField: EntryField,
+}
+
+class FormEditDataBase extends Block<IFormEditDataProps> {
   protected init() {
-    this.children.email = new EntryField({
+    this.createContent();
+
+    this.children.button = new Button({
+      label: 'Сохранить',
+      events: {
+        click: (event) => {
+          event.preventDefault();
+
+          const entryFields = Object.values(this.children)
+            .filter((child) => (child instanceof EntryField)) as [EntryField];
+
+          const result = validate(entryFields);
+          if (!result) return;
+
+          this.props.handlerSaveButton();
+
+          const values = Object
+            .values(this.children)
+            .filter((child) => child instanceof EntryField)
+            .map((child) => ([(child as EntryField).name, (child as Input).value]));
+
+          const data = Object.fromEntries(values);
+
+          UsersController.profile(data);
+        },
+      },
+    });
+  }
+
+  private createContent() {
+    this.children.emailField = new EntryField({
       type: 'email',
       name: 'email',
       value: this.props.email,
@@ -20,7 +66,7 @@ class FormEditDataBase extends Block {
       error: 'Неверный email',
     });
 
-    this.children.login = new EntryField({
+    this.children.loginField = new EntryField({
       name: 'login',
       value: this.props.login,
       regexp: Regexp.login,
@@ -52,53 +98,26 @@ class FormEditDataBase extends Block {
       error: 'Неверное имя',
     });
 
-    this.children.phone = new EntryField({
+    this.children.phoneField = new EntryField({
       name: 'phone',
       value: this.props.phone,
       regexp: Regexp.phone,
       label: 'Телефон',
       error: 'Неверный телефон',
     });
-
-    this.children.button = new Button({
-      label: 'Сохранить',
-      events: {
-        click: (event) => {
-          event.preventDefault();
-
-          const entryFields = Object.values(this.children)
-            .filter((child) => (child instanceof EntryField)) as [EntryField];
-
-          const result = validate(entryFields);
-          if (!result) return;
-
-          this.props.handlerSaveButton();
-
-          const values = Object
-            .values(this.children)
-            .filter((child) => child instanceof EntryField)
-            .map((child) => ([(child as EntryField).name, (child as Input).value]));
-
-          const data = Object.fromEntries(values);
-
-          UsersController.profile(data);
-        },
-      },
-    });
   }
 
-  render() {
-    (this.children.email as Input).setProps({ ...this.props, value: this.props.email });
-    (this.children.login as Input).setProps({ ...this.props, value: this.props.login });
-    (this.children.firstName as Input).setProps({ ...this.props, value: this.props.first_name });
-    (this.children.secondName as Input).setProps({ ...this.props, value: this.props.second_name });
-    (this.children.displayName as Input)
-      .setProps({ ...this.props, value: this.props.display_name });
-    (this.children.phone as Input).setProps({ ...this.props, value: this.props.phone });
+  protected componentDidUpdate(oldProps: IFormEditDataProps, newProps: IFormEditDataProps) {
+    this.createContent();
+
+    return oldProps !== newProps;
+  }
+
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }
 
 const withUser = withStore((state) => ({ ...state.user.data } || {}));
-const FormEditData = withUser(FormEditDataBase);
+const FormEditData = withUser(FormEditDataBase as typeof Block);
 export default FormEditData;

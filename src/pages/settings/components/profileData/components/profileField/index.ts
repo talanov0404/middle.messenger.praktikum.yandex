@@ -1,14 +1,14 @@
-import Block from '../../../../../../utils/Block';
+import Block, { IBlock } from '../../../../../../utils/Block';
 import template from './profileField.hbs';
 import './profileField.scss';
 
-type TProfileFieldProps = {
+interface IProfileFieldProps extends IBlock {
   name: string,
   value: string,
-};
+}
 
-export default class ProfileField extends Block<TProfileFieldProps> {
-  render() {
+export default class ProfileField extends Block<IProfileFieldProps> {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

@@ -6,7 +6,7 @@ interface IHeaderProps extends IBlock {
 }
 
 export default class Header extends Block<IHeaderProps> {
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

@@ -12,7 +12,6 @@ class MessagesController {
     }
 
     const token = await ChatsController.getToken(id);
-
     const userId = store.getState().user.data.id;
 
     const wsTransport = new WSTransport(`/${userId}/${id}/${token}`);
@@ -55,7 +54,7 @@ class MessagesController {
     Array.from(this.transports.values()).forEach((transport) => transport.close());
   }
 
-  private onMessage(id: number, messages: Message | Message[]) {
+  private async onMessage(id: number, messages: Message | Message[]) {
     let messagesToAdd: Message[] = [];
 
     if (Array.isArray(messages)) {
@@ -69,6 +68,8 @@ class MessagesController {
     messagesToAdd = [...currentMessages, ...messagesToAdd];
 
     store.set(`messages.${id}`, messagesToAdd);
+
+    await ChatsController.fetchChats();
   }
 
   private onClose(id: number) {

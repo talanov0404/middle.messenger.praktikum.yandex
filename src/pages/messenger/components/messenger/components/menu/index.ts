@@ -116,7 +116,7 @@ class MenuBase extends Block {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

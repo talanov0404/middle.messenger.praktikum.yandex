@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block, { IBlock } from '../../../../utils/Block';
 import template from './formEditPassword.hbs';
 import './formEditPassword.scss';
 import Button from '../../../../components/button';
@@ -8,7 +8,15 @@ import validate from '../../../../utils/validate';
 import withStore from '../../../../hocs/withStore';
 import UsersController from '../../../../controllers/UsersController';
 
-class FormEditPasswordBase extends Block {
+interface IFormEditPasswordProps extends IBlock {
+  passwordOld: EntryField,
+  passwordOne: EntryField,
+  passwordTwo: EntryField,
+  button: Button,
+  handlerSaveButton: () => void
+}
+
+class FormEditPasswordBase extends Block<IFormEditPasswordProps> {
   protected init() {
     this.children.passwordOld = new EntryField({
       type: 'password',
@@ -72,11 +80,11 @@ class FormEditPasswordBase extends Block {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }
 
 const withUser = withStore((state) => ({ ...state.user } || {}));
-const FormEditPassword = withUser(FormEditPasswordBase);
+const FormEditPassword = withUser(FormEditPasswordBase as typeof Block);
 export default FormEditPassword;

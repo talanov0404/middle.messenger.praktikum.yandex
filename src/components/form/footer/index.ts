@@ -9,7 +9,7 @@ interface IFooterProps extends IBlock {
 }
 
 export default class Footer extends Block<IFooterProps> {
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

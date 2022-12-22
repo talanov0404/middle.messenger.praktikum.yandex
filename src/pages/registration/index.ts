@@ -20,13 +20,13 @@ export default class RegistrationPage extends Block<IRegistrationPageProps> {
     const button = new Button({
       label: 'Зарегистрироваться',
       events: {
-        click: (event) => {
+        click: async (event) => {
           event.preventDefault();
 
           const { data } = this.children.content as Content;
           if (!(this.children.content as Content).isValid) return;
 
-          AuthController.signup(data);
+          await AuthController.signup(data);
         },
       },
     });
@@ -37,11 +37,11 @@ export default class RegistrationPage extends Block<IRegistrationPageProps> {
     });
 
     this.children.header = new Header({ label: 'Регистрация' });
-    this.children.content = new Content({});
+    this.children.content = new Content();
     this.children.footer = new Footer({ button, link });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

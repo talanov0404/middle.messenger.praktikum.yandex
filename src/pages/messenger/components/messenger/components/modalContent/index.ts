@@ -39,7 +39,7 @@ export default class ModalContent extends Block<IModalContent> {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }

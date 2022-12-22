@@ -26,7 +26,7 @@ export default class Input extends Block<IInputProps> {
     return (this.element as HTMLInputElement).name;
   }
 
-  render() {
+  protected render() {
     return this.compile(template, { ...this.props });
   }
 }
