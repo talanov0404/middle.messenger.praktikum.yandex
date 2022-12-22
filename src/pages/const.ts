@@ -1,5 +1,5 @@
 enum Routes {
-  Authorization = '/*',
+  Authorization = '/',
   Registrations = '/sign-up',
   Settings = '/settings',
   Messenger = '/messenger',

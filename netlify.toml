@@ -5,5 +5,10 @@
 # “command” is your build command.
 # “publish” is the directory to publish (relative to the root of your repo).
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [build]
   command = "npm run build"
