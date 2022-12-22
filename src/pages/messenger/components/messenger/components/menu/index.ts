@@ -72,6 +72,7 @@ class MenuBase extends Block {
               }
               this.setProps({ activeModal: false });
               this.props.handler();
+              modalContent.clear();
             },
           });
           this.setProps({ ...this.props, activeModal: true });
@@ -93,6 +94,7 @@ class MenuBase extends Block {
               await ChatsController.delete(this.props.selectedChat.id);
               this.setProps({ activeModal: false });
               this.props.handler();
+              modalContent.clear();
             },
           });
           this.setProps({ ...this.props, activeModal: true });
