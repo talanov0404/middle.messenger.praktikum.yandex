@@ -1,4 +1,4 @@
-import Block, { IBlock } from './Block';
+import { Block, IBlock } from './Block';
 import Route from './Route';
 import Routes from '../pages/const';
 
@@ -60,6 +60,11 @@ class Router {
 
   public forward() {
     this.history.forward();
+  }
+
+  public reset() {
+    this.routes = [];
+    this.currentRoute = null;
   }
 
   private getRoute(pathname: string) {

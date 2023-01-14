@@ -1,4 +1,4 @@
-import Block from './Block';
+import { Block } from './Block';
 import { BlockConstructable } from './Router';
 
 function isEqual(lhs: string, rhs: string): boolean {

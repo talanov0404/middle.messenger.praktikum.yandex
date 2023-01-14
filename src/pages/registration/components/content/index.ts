@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../../../utils/Block';
+import { Block, IBlock } from '../../../../utils/Block';
 import template from './content.hbs';
 import EntryField from '../../../../components/entryField';
 import Input from '../../../../components/input';

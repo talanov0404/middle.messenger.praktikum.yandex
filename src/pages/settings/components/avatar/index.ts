@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import { Block } from '../../../../utils/Block';
 import template from './avatar.hbs';
 import './avatar.scss';
 import Modal from '../../../../components/modal';

@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../../../utils/Block';
+import { Block, IBlock } from '../../../../utils/Block';
 import template from './chatsList.hbs';
 import Chat from './components/chat';
 import './chatsList.scss';

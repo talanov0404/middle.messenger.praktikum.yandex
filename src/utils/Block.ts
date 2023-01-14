@@ -30,7 +30,7 @@ type TProps<P extends IBlock = any> = {
   events?: TEvents<Event>;
 } & P;
 
-export default class Block<P extends IBlock = any> {
+export class Block<P extends IBlock = any> {
   public id: string = makeUUID();
   private _element: HTMLElement | null = null;
   protected props: TProps<P>;
@@ -207,14 +207,10 @@ export default class Block<P extends IBlock = any> {
   }
 
   public show() {
-    if (this.element) {
-      this.element.style.display = 'unset';
-    }
+    this.element!.style.display = 'unset';
   }
 
   public hide() {
-    if (this.element) {
-      this.element.style.display = 'none';
-    }
+    this.element!.style.display = 'none';
   }
 }

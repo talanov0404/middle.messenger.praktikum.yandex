@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../../../utils/Block';
+import { Block, IBlock } from '../../../../utils/Block';
 import template from './formEditPassword.hbs';
 import './formEditPassword.scss';
 import Button from '../../../../components/button';
