@@ -11,7 +11,7 @@ describe('Link', () => {
     };
   });
 
-  it.only('should render component', () => (
+  it('should render component', () => (
     new Link({ text: 'Go to', route: '/', router: routerMock })));
 
   it('should call Router.go on click', () => {
