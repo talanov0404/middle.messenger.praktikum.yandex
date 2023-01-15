@@ -7,7 +7,5 @@ describe('Block', () => {
     }
   }
 
-  it('should fire init event on initialization', () => {
-    new ComponentMock({});
-  });
+  it('should fire init event on initialization', () => new ComponentMock({}));
 });
