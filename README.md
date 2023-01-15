@@ -4,7 +4,7 @@
 <h3>Пример использование</h3>
 
 Пример на netlify - <https://messenger-yandex-middle.netlify.app/>
-Пример на Render.com с использованием Docker - <https://messenger-yandex-middle.netlify.app/>
+Пример на Render.com с использованием Docker - <https://messenger-yandex-middle.onrender.com>
 
 <h3>Использование</h3>
 
