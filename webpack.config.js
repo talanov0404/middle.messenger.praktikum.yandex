@@ -54,12 +54,11 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         type: 'asset/inline',
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'asset/resource',
         use: [
           {
             loader: 'file-loader',
@@ -67,8 +66,6 @@ module.exports = {
               name: '[name].[ext]',
               outputPath: 'images/',
               publicPath: 'images/',
-              useRelativePath: true,
-              esModule: false,
             },
           },
         ],
