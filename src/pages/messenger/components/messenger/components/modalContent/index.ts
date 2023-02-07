@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../../../../../utils/Block';
+import { Block, IBlock } from '../../../../../../utils/Block';
 import template from './modalContent.hbs';
 import './modalContent.scss';
 import EntryField from '../../../../../../components/entryField';

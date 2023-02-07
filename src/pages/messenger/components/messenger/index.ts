@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../../../utils/Block';
+import { Block, IBlock } from '../../../../utils/Block';
 import template from './messenger.hbs';
 import './messenger.scss';
 import arrow from '../../../../../static/arrow.svg';

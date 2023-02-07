@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import { Block } from '../../utils/Block';
 import template from './messenger.hbs';
 import './messenger.scss';
 import ChatsController from '../../controllers/ChatsController';

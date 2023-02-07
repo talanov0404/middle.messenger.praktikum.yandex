@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../../../../../utils/Block';
+import { Block, IBlock } from '../../../../../../utils/Block';
 import template from './message.hbs';
 import './message.scss';
 

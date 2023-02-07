@@ -1,11 +1,12 @@
 # Messenger Yandex Praktikum
 Ссылка на макеты figma - <https://www.figma.com/file/z6fige0zboLKNT3bR1gdsq/chat-yandex>
 
-<h2 align="center">Пример использование</h2>
+<h3>Пример использование</h3>
 
-Пример - <https://messenger-yandex-middle.netlify.app/>
+Пример на netlify - <https://messenger-yandex-middle.netlify.app/>
+Пример на Render.com с использованием Docker - <https://messenger-yandex-middle.onrender.com>
 
-<h2 align="center">Использование</h2>
+<h3>Использование</h3>
 
 Использование с раздачей статики:
 
@@ -13,7 +14,7 @@
 npm run start
 ```
 
-<h2 align="center">Разработчикам</h2>
+<h3>Разработчикам</h3>
 
 Установка зависимостей:
 ```bash
@@ -38,4 +39,14 @@ npm run stylelint
 сборка стабильной версии:
 ```bash
 npm run build
+```
+
+сборка docker контейнера:
+```bash
+docker build -t chats-app .
+```
+
+запуск docker контейнера:
+```bash
+docker run -it -p 3000:3000 chats-app
 ```

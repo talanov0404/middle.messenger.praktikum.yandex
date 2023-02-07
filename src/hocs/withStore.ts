@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../utils/Block';
+import { Block, IBlock } from '../utils/Block';
 import store, { StoreEvents } from '../utils/Store';
 import { Indexed, isEqual } from '../utils/helpers';
 import { ChatInfo, Message, User } from '../types/interfaces';

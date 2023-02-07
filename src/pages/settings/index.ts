@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../utils/Block';
+import { Block, IBlock } from '../../utils/Block';
 import template from './settings.hbs';
 import './settings.scss';
 import Button from '../../components/button';

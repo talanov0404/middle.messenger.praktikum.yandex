@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../utils/Block';
+import { Block, IBlock } from '../utils/Block';
 import Router from '../utils/Router';
 
 export interface IPropsWithRouter extends IBlock {

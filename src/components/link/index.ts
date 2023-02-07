@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import { Block } from '../../utils/Block';
 import { IPropsWithRouter, withRouter } from '../../hocs/withRouter';
 import template from './link.hbs';
 import './link.scss';
@@ -11,7 +11,7 @@ export interface ILinkProps extends IPropsWithRouter {
   },
 }
 
-class BaseLink extends Block<ILinkProps> {
+export class BaseLink extends Block<ILinkProps> {
   constructor(props: ILinkProps) {
     super({
       ...props,

@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../utils/Block';
+import { Block, IBlock } from '../../utils/Block';
 import template from './errorPage.hbs';
 import './errorPage.scss';
 import Link from '../../components/link';

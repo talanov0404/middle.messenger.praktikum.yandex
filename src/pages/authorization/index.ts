@@ -1,4 +1,4 @@
-import Block, { IBlock } from '../../utils/Block';
+import { Block, IBlock } from '../../utils/Block';
 import template from './authorization.hbs';
 import './authorization.scss';
 import Button from '../../components/button';
